@@ -70,7 +70,7 @@ public class HandMovement : MonoBehaviour
                 
                 bool didHit = false;
 
-                Collider[] hits = Physics.OverlapSphere(transform.position, 0.1f, grabbable);
+                Collider[] hits = Physics.OverlapSphere(transform.position, 0.2f, grabbable);
                 foreach (Collider _hit in hits)
                 {
                     Rigidbody hitBody = _hit.GetComponent<Rigidbody>();

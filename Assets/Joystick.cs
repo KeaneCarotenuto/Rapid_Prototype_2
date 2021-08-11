@@ -25,19 +25,19 @@ public class Joystick : MonoBehaviour
         Left = false;
         Right = false;
         
-        if(m_stick.localRotation.x > 0.3f)
+        if(m_stick.localRotation.x > 0.2f)
         {
             Up = true;
         }
-        else if(m_stick.localRotation.x < -0.3f)
+        else if(m_stick.localRotation.x < -0.2f)
         {
             Down = true;
         }
-        else if(m_stick.localRotation.z > 0.3f)
+        else if(m_stick.localRotation.z > 0.2f)
         {
             Left = true;
         }
-        else if(m_stick.localRotation.z < -0.3f)
+        else if(m_stick.localRotation.z < -0.2f)
         {
             Right = true;
         }

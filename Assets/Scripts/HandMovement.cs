@@ -6,7 +6,7 @@ public class HandMovement : MonoBehaviour
 {
     public float m_moveSpeed = 1.0f;
 
-    float targetHeight = 1.25f;
+    public float targetHeight = 1.25f;
 
     public Rigidbody m_rb;
 

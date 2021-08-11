@@ -28,6 +28,9 @@ public class HandMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         if (!manual_height) targetHeight = transform.position.y;
         if (!m_rb) m_rb = GetComponent<Rigidbody>();
     }
@@ -36,6 +39,9 @@ public class HandMovement : MonoBehaviour
     void Update()
     {
         Vector3 desiredVel = Vector3.zero;
+
+        float horiz = Input.GetAxis("Mouse X");
+        float vert = Input.GetAxis("Mouse Y");
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -46,22 +52,26 @@ public class HandMovement : MonoBehaviour
             desiredVel += Vector3.ClampMagnitude((new Vector3(transform.position.x, targetHeight, transform.position.z) - transform.position) * 10, m_moveSpeed);
         }
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            desiredVel += Vector3.forward  * m_moveSpeed;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            desiredVel += Vector3.back * m_moveSpeed;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            desiredVel += Vector3.left * m_moveSpeed;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            desiredVel += Vector3.right * m_moveSpeed;
-        }
+        desiredVel += new Vector3(horiz, 0, vert) * 10 * m_moveSpeed;
+
+        m_rb.velocity = desiredVel;
+
+        //if (Input.GetKey(KeyCode.W))
+        //{
+        //    desiredVel += Vector3.forward  * m_moveSpeed;
+        //}
+        //if (Input.GetKey(KeyCode.S))
+        //{
+        //    desiredVel += Vector3.back * m_moveSpeed;
+        //}
+        //if (Input.GetKey(KeyCode.A))
+        //{
+        //    desiredVel += Vector3.left * m_moveSpeed;
+        //}
+        //if (Input.GetKey(KeyCode.D))
+        //{
+        //    desiredVel += Vector3.right * m_moveSpeed;
+        //}
 
         m_rb.velocity = desiredVel;
 
@@ -120,6 +130,8 @@ public class HandMovement : MonoBehaviour
             {
                 if (m_joint)
                 {
+                    HandCallback callback = m_joint.connectedBody.transform.GetComponent<HandCallback>();
+                    if (callback) callback.Release();
                     Destroy(m_joint);
                 }
                 foreach (GameObject _part in fingers)

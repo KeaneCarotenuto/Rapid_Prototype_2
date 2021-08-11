@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PaperTask : MonoBehaviour
 {
-    bool crumpled = false;
+    bool m_crumpled = false;
 
-    public GameObject stamp;
+    public GameObject m_stamp;
 
-    [SerializeField] Mesh sphereMesh;
+    [SerializeField] Mesh m_sphereMesh;
+
+    [SerializeField] HandCallback m_handCallback;
 
     // Start is called before the first frame update
     void Start()
@@ -24,19 +26,26 @@ public class PaperTask : MonoBehaviour
 
     public void Crumple()
     {
-        if (crumpled) return;
+        if (m_crumpled) return;
 
-        crumpled = true;
+        m_crumpled = true;
         transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        GetComponent<MeshFilter>().mesh = sphereMesh;
-        GetComponent<MeshCollider>().sharedMesh = sphereMesh;
+        GetComponent<MeshFilter>().mesh = m_sphereMesh;
+        GetComponent<MeshCollider>().sharedMesh = m_sphereMesh;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!crumpled && collision.transform == stamp.transform)
+        if (!m_crumpled && collision.transform == m_stamp.transform)
         {
             GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!m_handCallback.isGrabbed && other.name == "DetectZone")
+        {
+            Destroy(gameObject,1);
         }
     }
 }

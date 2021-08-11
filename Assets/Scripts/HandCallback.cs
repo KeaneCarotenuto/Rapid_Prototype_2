@@ -9,6 +9,9 @@ public class HandCallback : MonoBehaviour
 
     public UnityEvent HandHit;
     public UnityEvent HandGrab;
+    public UnityEvent HandRelease;
+
+    public bool isGrabbed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,13 @@ public class HandCallback : MonoBehaviour
     public void Grabbed()
     {
         HandGrab.Invoke();
+        isGrabbed = true;
+    }
+
+    public void Release()
+    {
+        HandRelease.Invoke();
+        isGrabbed = false;
     }
 
     private void OnCollisionEnter(Collision collision)

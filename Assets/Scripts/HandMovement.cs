@@ -9,6 +9,11 @@ public class HandMovement : MonoBehaviour
     public float targetHeight = 1.25f;
 
     public Rigidbody m_rb;
+    public FixedJoint m_joint;
+
+    public LayerMask grabbable;
+
+    public GameObject[] fingers;
 
     bool mouseDown = false;
 
@@ -62,6 +67,34 @@ public class HandMovement : MonoBehaviour
         {
             if (!mouseDown)
             {
+                
+                bool didHit = false;
+
+                Collider[] hits = Physics.OverlapSphere(transform.position, 0.1f, grabbable);
+                foreach (Collider _hit in hits)
+                {
+                    Rigidbody hitBody = _hit.GetComponent<Rigidbody>();
+
+                    if (hitBody)
+                    {
+                        m_joint = gameObject.AddComponent<FixedJoint>();
+                        m_joint.connectedBody = hitBody;
+                        didHit = true;
+                        break;
+                    }
+                    
+                }
+
+                if (didHit)
+                {
+                    foreach (GameObject _part in fingers)
+                    {
+                        _part.GetComponent<Collider>().enabled = false;
+                    }
+                }
+
+                
+
                 GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Close");
                 GetComponent<Animation>().Play();
             }
@@ -71,6 +104,15 @@ public class HandMovement : MonoBehaviour
         {
             if (mouseDown)
             {
+                if (m_joint)
+                {
+                    Destroy(m_joint);
+                }
+                foreach (GameObject _part in fingers)
+                {
+                    _part.GetComponent<Collider>().enabled = true;
+                }
+
                 GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Open");
                 GetComponent<Animation>().Play();
             }

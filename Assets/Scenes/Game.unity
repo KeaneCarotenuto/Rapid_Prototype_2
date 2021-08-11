@@ -2068,6 +2068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7d84eed26a5f7468340c8927f2d813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_hand: {fileID: 47643162}
   HandHit:
     m_PersistentCalls:
       m_Calls:

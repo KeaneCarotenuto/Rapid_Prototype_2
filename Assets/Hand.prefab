@@ -434,7 +434,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 1
+  targetHeight: 1.25
   m_rb: {fileID: 3079367694037455575}
+  m_joint: {fileID: 0}
+  grabbable:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  fingers:
+  - {fileID: 3079367694015325941}
+  - {fileID: 3079367695028737475}
+  - {fileID: 3079367692969141269}
+  - {fileID: 3079367693896265060}
+  - {fileID: 3079367693459146792}
 --- !u!54 &3079367694037455575
 Rigidbody:
   m_ObjectHideFlags: 0

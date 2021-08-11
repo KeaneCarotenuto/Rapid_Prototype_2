@@ -1972,6 +1972,7 @@ GameObject:
   - component: {fileID: 1142319369}
   - component: {fileID: 1142319368}
   - component: {fileID: 1142319367}
+  - component: {fileID: 1142319371}
   m_Layer: 0
   m_Name: Keyboard
   m_TagString: Untagged
@@ -2055,6 +2056,33 @@ Transform:
   m_Father: {fileID: 1310600000}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1142319371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142319366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7d84eed26a5f7468340c8927f2d813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HandHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1274723086}
+        m_TargetAssemblyTypeName: EventTest_TODELETE_, Assembly-CSharp
+        m_MethodName: SetScale
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 1.01
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1178352907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,8 +2191,9 @@ GameObject:
   - component: {fileID: 1274723084}
   - component: {fileID: 1274723083}
   - component: {fileID: 1274723082}
+  - component: {fileID: 1274723086}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2246,6 +2275,18 @@ Transform:
   m_Father: {fileID: 1310600000}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1274723086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274723081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6661fcfd374ba2c4c985668b53537fd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1310599999
 GameObject:
   m_ObjectHideFlags: 0

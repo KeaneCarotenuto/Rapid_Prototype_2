@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class HandMovement : MonoBehaviour
 {
+    [Header("Movement")]
     public float m_moveSpeed = 1.0f;
 
+    [SerializeField] bool manual_height;
+
     public float targetHeight = 1.25f;
+
+
+    [Header("Grabbing")]
+    bool mouseDown = false;
 
     public Rigidbody m_rb;
     public FixedJoint m_joint;
 
+    public float grabDistance;
     public LayerMask grabbable;
 
     public GameObject[] fingers;
 
-    bool mouseDown = false;
+    public Transform grabSpot;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (!manual_height) targetHeight = transform.position.y;
         if (!m_rb) m_rb = GetComponent<Rigidbody>();
     }
 
@@ -65,12 +74,11 @@ public class HandMovement : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            if (!mouseDown)
+            if (!m_joint)
             {
-                
                 bool didHit = false;
 
-                Collider[] hits = Physics.OverlapSphere(transform.position, 0.2f, grabbable);
+                Collider[] hits = Physics.OverlapSphere(grabSpot.position, grabDistance, grabbable);
                 foreach (Collider _hit in hits)
                 {
                     Rigidbody hitBody = _hit.GetComponent<Rigidbody>();
@@ -79,10 +87,15 @@ public class HandMovement : MonoBehaviour
                     {
                         m_joint = gameObject.AddComponent<FixedJoint>();
                         m_joint.connectedBody = hitBody;
+
+                        HandCallback callback = hitBody.GetComponent<HandCallback>();
+
+                        if (callback) callback.Grabbed();
+
                         didHit = true;
                         break;
                     }
-                    
+
                 }
 
                 if (didHit)
@@ -92,9 +105,10 @@ public class HandMovement : MonoBehaviour
                         _part.GetComponent<Collider>().enabled = false;
                     }
                 }
+            }
 
-                
-
+            if (!mouseDown)
+            {
                 GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Close");
                 GetComponent<Animation>().Play();
             }

@@ -10,6 +10,8 @@ public class HandMovement : MonoBehaviour
 
     public Rigidbody m_rb;
 
+    bool mouseDown = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +57,26 @@ public class HandMovement : MonoBehaviour
         m_rb.AddTorque(Vector3.up * Vector3.Dot(transform.forward, Vector3.left) * ratio);
         m_rb.AddTorque(Vector3.right * Vector3.Dot(transform.forward, Vector3.up) * ratio);
         m_rb.AddTorque(Vector3.forward * Vector3.Dot(transform.right, Vector3.down) * ratio);
+
+        if (Input.GetMouseButton(0))
+        {
+            if (!mouseDown)
+            {
+                GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Close");
+                GetComponent<Animation>().Play();
+            }
+            mouseDown = true;
+        }
+        else
+        {
+            if (mouseDown)
+            {
+                GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Open");
+                GetComponent<Animation>().Play();
+            }
+
+            mouseDown = false;
+        }
 
     }
 }

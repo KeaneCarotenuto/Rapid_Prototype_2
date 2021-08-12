@@ -598,6 +598,30 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3079367694037455592, guid: cc373d8699a0ae745aed9c85a4607ef1, type: 3}
+      propertyPath: xBounds.x
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3079367694037455592, guid: cc373d8699a0ae745aed9c85a4607ef1, type: 3}
+      propertyPath: xBounds.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3079367694037455592, guid: cc373d8699a0ae745aed9c85a4607ef1, type: 3}
+      propertyPath: yBounds.x
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3079367694037455592, guid: cc373d8699a0ae745aed9c85a4607ef1, type: 3}
+      propertyPath: yBounds.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3079367694037455592, guid: cc373d8699a0ae745aed9c85a4607ef1, type: 3}
+      propertyPath: zBounds.x
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3079367694037455592, guid: cc373d8699a0ae745aed9c85a4607ef1, type: 3}
+      propertyPath: zBounds.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3079367694037455592, guid: cc373d8699a0ae745aed9c85a4607ef1, type: 3}
       propertyPath: targetHeight
       value: 0.8
       objectReference: {fileID: 0}

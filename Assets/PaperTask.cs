@@ -1,51 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PaperTask : MonoBehaviour
 {
-    bool m_crumpled = false;
+    public UnityEvent TaskCompleted;
+    public UnityEvent TaskFailed;
 
-    public GameObject m_stamp;
+    public GameObject m_currentPaper;
+    public GameObject PaperPrefab;
 
-    [SerializeField] Mesh m_sphereMesh;
+    public bool taskExists;
 
-    [SerializeField] HandCallback m_handCallback;
+    public Transform paperPosition;
+    public float spawnHeight = 10;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //paperPosition = m_currentPaper.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!taskExists && !m_currentPaper) StartTask();
     }
 
-    public void Crumple()
+    public void StartTask()
     {
-        if (m_crumpled) return;
+        if (taskExists) return;
+        if (!m_currentPaper) m_currentPaper = Instantiate(PaperPrefab, paperPosition.position +  new Vector3(0, spawnHeight, 0), Quaternion.identity, transform);
+        Paper paper = m_currentPaper.GetComponent<Paper>();
+        paper.completed.AddListener(CompleteTask);
+        paper.failed.AddListener(FailTask);
 
-        m_crumpled = true;
-        transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        GetComponent<MeshFilter>().mesh = m_sphereMesh;
-        GetComponent<MeshCollider>().sharedMesh = m_sphereMesh;
+        taskExists = true;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void CompleteTask()
     {
-        if (!m_crumpled && collision.transform == m_stamp.transform)
-        {
-            GetComponent<MeshRenderer>().material.color = Color.red;
-        }
+        if (!taskExists) return;
+        taskExists = false;
+        TaskCompleted.Invoke();
+        Debug.Log("Completed");
     }
-    private void OnTriggerEnter(Collider other)
+
+    public void FailTask()
     {
-        if (!m_handCallback.isGrabbed && other.name == "DetectZone")
-        {
-            Destroy(gameObject,1);
-        }
+        if (!taskExists) return;
+        taskExists = false;
+        TaskFailed.Invoke();
+        Debug.Log("Failed");
     }
 }

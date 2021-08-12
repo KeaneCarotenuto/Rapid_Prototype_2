@@ -14,6 +14,7 @@ public class StayOnDesk : MonoBehaviour
     public Vector3 respawnPoint;
 
     public float respawnHeight = 10.0f;
+    public bool randomRotation = true;
 
 
     private Rigidbody m_rb;
@@ -42,7 +43,8 @@ public class StayOnDesk : MonoBehaviour
             }
 
             transform.position = respawnPoint + new Vector3(0, respawnHeight, 0);
-            transform.rotation = Random.rotation;
+            if (randomRotation) transform.rotation = Random.rotation;
+            else transform.rotation = Quaternion.identity;
         }
     }
 }

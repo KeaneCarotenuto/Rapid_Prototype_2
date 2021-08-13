@@ -7,6 +7,7 @@ public class Joystick : MonoBehaviour
 {
 
     public Transform m_stick;
+    public Vector3 m_rawinput;
     public UnityEvent OnJoystickUp, OnJoystickDown, OnJoystickLeft, OnJoystickRight;
 
     public bool UpLastFrame, DownLastFrame, LeftLastFrame, RightLastFrame, Up, Down, Left, Right;
@@ -14,7 +15,7 @@ public class Joystick : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,37 +25,37 @@ public class Joystick : MonoBehaviour
         Down = false;
         Left = false;
         Right = false;
-        
-        if(m_stick.localRotation.x > 0.2f)
+
+        if (m_stick.localRotation.x > 0.2f)
         {
             Up = true;
         }
-        else if(m_stick.localRotation.x < -0.2f)
+        else if (m_stick.localRotation.x < -0.2f)
         {
             Down = true;
         }
-        else if(m_stick.localRotation.z > 0.2f)
+        else if (m_stick.localRotation.z > 0.2f)
         {
             Left = true;
         }
-        else if(m_stick.localRotation.z < -0.2f)
+        else if (m_stick.localRotation.z < -0.2f)
         {
             Right = true;
         }
 
-        if(Up && !UpLastFrame)
+        if (Up && !UpLastFrame)
         {
             OnJoystickUp.Invoke();
         }
-         if(Down && !DownLastFrame)
+        if (Down && !DownLastFrame)
         {
             OnJoystickDown.Invoke();
         }
-         if(Left && !LeftLastFrame)
+        if (Left && !LeftLastFrame)
         {
             OnJoystickLeft.Invoke();
         }
-         if(Right && !RightLastFrame)
+        if (Right && !RightLastFrame)
         {
             OnJoystickRight.Invoke();
         }
@@ -63,5 +64,8 @@ public class Joystick : MonoBehaviour
         DownLastFrame = Down;
         LeftLastFrame = Left;
         RightLastFrame = Right;
+
+        m_rawinput.x = m_stick.localRotation.z * -10.0f;
+        m_rawinput.y = m_stick.localRotation.x * 10.0f;
     }
 }

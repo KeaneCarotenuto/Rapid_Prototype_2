@@ -47,9 +47,9 @@ public class Task : MonoBehaviour
         return id;
     }
 
-    virtual public void StartTask(string _ID, float _time = Mathf.Infinity)
+    virtual public void StartTask(float _time = Mathf.Infinity)
     {
-        m_taskqueue.Enqueue(new TaskStruct)
+
         if (taskExists) return;
         startTime = Time.time;
         taskTime = _time;

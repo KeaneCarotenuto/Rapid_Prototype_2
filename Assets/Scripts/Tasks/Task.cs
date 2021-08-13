@@ -5,11 +5,23 @@ using UnityEngine.Events;
 
 public class Task : MonoBehaviour
 {
+    string id;
+
     public UnityEvent TaskCompleted;
     public UnityEvent TaskFailed;
     public bool taskExists;
     protected float startTime = 0;
     protected float taskTime = Mathf.Infinity;
+
+    virtual public void SetId(string _id)
+    {
+        id = _id;
+    }
+
+    virtual public string GetId()
+    {
+        return id;
+    }
 
     virtual public void StartTask(float _time = Mathf.Infinity)
     {

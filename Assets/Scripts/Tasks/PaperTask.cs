@@ -10,7 +10,7 @@ public class PaperTask : Task
 
     public Transform paperPosition;
     public float spawnHeight = 10;
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -31,7 +31,7 @@ public class PaperTask : Task
         startTime = Time.time;
         taskTime = _time;
 
-        if (!m_currentPaper) m_currentPaper = Instantiate(PaperPrefab, paperPosition.position +  new Vector3(0, spawnHeight, 0), Quaternion.identity, transform);
+        if (!m_currentPaper) m_currentPaper = Instantiate(PaperPrefab, paperPosition.position + new Vector3(0, spawnHeight, 0), Quaternion.identity, transform);
         Paper paper = m_currentPaper.GetComponent<Paper>();
         paper.completed.AddListener(CompleteTask);
         paper.failed.AddListener(() => { FailTask(); });
@@ -43,7 +43,7 @@ public class PaperTask : Task
     {
         if (!taskExists) return;
         taskExists = false;
-        TaskCompleted.Invoke();
+        TaskCompleted.Invoke(id);
         Debug.Log("Completed");
     }
 
@@ -51,7 +51,7 @@ public class PaperTask : Task
     {
         if (requireTask && !taskExists) return;
         taskExists = false;
-        TaskFailed.Invoke();
+        TaskFailed.Invoke(id);
         Debug.Log("Failed");
 
         if (m_currentPaper)

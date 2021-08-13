@@ -128,6 +128,58 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3079367694037455570, guid: cc373d8699a0ae745aed9c85a4607ef1, type: 3}
   m_PrefabInstance: {fileID: 3079367693992487112}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &180734657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180734659}
+  - component: {fileID: 180734658}
+  m_Layer: 0
+  m_Name: TaskManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &180734658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180734657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca485cadd0a0a68f99fd20aaa2634adc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PossibleTasks: []
+  m_TaskBoardText: {fileID: 0}
+  m_NewTaskInterval: 0
+  m_NewTaskProbability: 0
+  m_MaxConcurrentTasks: 0
+  m_TaskSuccessSound: {fileID: 0}
+  m_TaskFailSound: {fileID: 0}
+  m_NewTaskSound: {fileID: 0}
+  m_Audio: {fileID: 0}
+--- !u!4 &180734659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180734657}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.8325732, y: -15.548128, z: 21.681555}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &185153711
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,14 +988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b98dc792751f614687402823e003ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TaskCompleted:
-    m_PersistentCalls:
-      m_Calls: []
-  TaskFailed:
-    m_PersistentCalls:
-      m_Calls: []
   taskExists: 0
-  onCall: 0
   m_light: {fileID: 504512809}
   red: {fileID: 2100000, guid: 0ae8c0e9f4a0e0344a85ca91f2262fbd, type: 2}
   green: {fileID: 2100000, guid: ad220ea21917f4349a09d3242f2ce8c6, type: 2}
@@ -2293,7 +2338,7 @@ GameObject:
   - component: {fileID: 1586510170}
   m_Layer: 0
   m_Name: PaperTask
-  m_TagString: Untagged
+  m_TagString: PaperTask
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2327,27 +2372,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8ee7ca18b675e4ab7d8a2a75c56597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TaskCompleted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 630288710}
-        m_TargetAssemblyTypeName: PhoneTask, Assembly-CSharp
-        m_MethodName: StartTask
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  TaskFailed:
-    m_PersistentCalls:
-      m_Calls: []
+  taskExists: 0
   m_currentPaper: {fileID: 0}
   PaperPrefab: {fileID: 5185921801184837481, guid: 23e09e7927c6a3349a1b1cef2df48a13, type: 3}
-  taskExists: 0
   paperPosition: {fileID: 1396773518}
   spawnHeight: 10
 --- !u!4 &1627647302 stripped
@@ -2367,7 +2394,7 @@ GameObject:
   - component: {fileID: 1659948905}
   m_Layer: 0
   m_Name: PhoneTask
-  m_TagString: Untagged
+  m_TagString: PhoneTask
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

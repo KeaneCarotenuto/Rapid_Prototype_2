@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+[CreateAssetMenu(fileName = "TaskData", menuName = "TaskData", order = 0)]
 public class TaskData : ScriptableObject
 {
     public string m_TaskID;
@@ -9,11 +12,7 @@ public class TaskData : ScriptableObject
 
     public float m_TaskDuration;
 
-    public bool m_SpawnsItems;
-
     public string m_ItemTag;
 
-    public List<GameObject> m_TaskItems;
-
-    public List<GameObject> m_SpawnedItems;
+    public Task m_Task;
 }

@@ -3,12 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public class TaskEvent : UnityEvent<string>
+{
+
+}
+
+public struct TaskStruct
+{
+    float Timer;
+    string ID;
+
+    public TaskStruct(float _time, string _id)
+    {
+        Timer = _time;
+        ID = _id;
+    }
+}
+
 public class Task : MonoBehaviour
 {
-    string id;
+    Queue<TaskStruct> m_taskqueue;
+    void Start()
+    {
+        TaskManager mgr = FindObjectOfType<TaskManager>();
+        TaskCompleted.AddListener(mgr.CompleteTask);
+        TaskFailed.AddListener(mgr.FailTask);
+    }
+    protected string id;
 
-    public UnityEvent TaskCompleted;
-    public UnityEvent TaskFailed;
+    public TaskEvent TaskCompleted;
+    public TaskEvent TaskFailed;
     public bool taskExists;
     protected float startTime = 0;
     protected float taskTime = Mathf.Infinity;
@@ -23,8 +47,9 @@ public class Task : MonoBehaviour
         return id;
     }
 
-    virtual public void StartTask(float _time = Mathf.Infinity)
+    virtual public void StartTask(string _ID, float _time = Mathf.Infinity)
     {
+        m_taskqueue.Enqueue(new TaskStruct)
         if (taskExists) return;
         startTime = Time.time;
         taskTime = _time;
@@ -44,7 +69,7 @@ public class Task : MonoBehaviour
     {
         if (!taskExists) return;
         taskExists = false;
-        TaskCompleted.Invoke();
+        TaskCompleted.Invoke(id);
 
         Debug.Log("Completed");
     }
@@ -53,7 +78,7 @@ public class Task : MonoBehaviour
     {
         if (requireTask && !taskExists) return;
         taskExists = false;
-        TaskFailed.Invoke();
+        TaskFailed.Invoke(id);
 
         Debug.Log("Failed");
     }

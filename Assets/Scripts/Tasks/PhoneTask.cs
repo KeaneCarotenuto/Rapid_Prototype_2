@@ -64,7 +64,6 @@ public class PhoneTask : Task
     {
         if (!taskExists) return;
         taskExists = false;
-        TaskCompleted.Invoke(id);
         Debug.Log("Completed");
     }
 
@@ -72,7 +71,6 @@ public class PhoneTask : Task
     {
         if (requireTask && !taskExists) return;
         taskExists = false;
-        TaskFailed.Invoke(id);
         Debug.Log("Failed");
     }
 }

@@ -28,6 +28,17 @@ public class HandMovement : MonoBehaviour
 
     public Transform grabSpot;
 
+    private void OnDrawGizmos()
+    {
+        Vector3 blfCorner = new Vector3(xBounds.x, yBounds.x, zBounds.x);
+        Vector3 trbCorner = new Vector3(xBounds.y, yBounds.y, zBounds.y);
+
+        Gizmos.DrawWireCube(
+            (blfCorner + trbCorner) /2.0f,
+            new Vector3(Mathf.Abs(xBounds.x - xBounds.y), Mathf.Abs(yBounds.x - yBounds.y), Mathf.Abs(zBounds.x - zBounds.y))
+            );
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -123,6 +134,17 @@ public class HandMovement : MonoBehaviour
 
         m_rb.velocity = desiredVel;
 
+        if (transform.position.y < yBounds.x && m_rb.velocity.y <= 0)
+        {
+            m_rb.velocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
+            transform.position = new Vector3(transform.position.x, yBounds.x, transform.position.z);
+        }
+        if (transform.position.y > yBounds.y && m_rb.velocity.y >= 0)
+        {
+            m_rb.velocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
+            transform.position = new Vector3(transform.position.x, yBounds.y, transform.position.z);
+        }
+        
         if (transform.position.x < xBounds.x && m_rb.velocity.x <= 0)
         {
             m_rb.velocity = new Vector3(0, m_rb.velocity.y, m_rb.velocity.z);
@@ -133,6 +155,7 @@ public class HandMovement : MonoBehaviour
             m_rb.velocity = new Vector3(0, m_rb.velocity.y, m_rb.velocity.z);
             transform.position = new Vector3(xBounds.y, transform.position.y, transform.position.z);
         }
+       
         if (transform.position.z < zBounds.x && m_rb.velocity.z <= 0)
         {
             m_rb.velocity = new Vector3(m_rb.velocity.x, m_rb.velocity.y, 0);

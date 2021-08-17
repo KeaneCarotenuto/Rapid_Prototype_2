@@ -8,7 +8,7 @@ public class TaskPanel : MonoBehaviour
     public TMP_Text TaskText;
     public TMP_Text TimeText;
 
-    public TaskData Task;
+    public Task Task;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +24,21 @@ public class TaskPanel : MonoBehaviour
         }
         else
         {
-            TaskText.text = Task.m_TaskDesc;
-            TimeText.text = Task.m_Task.GetRemainingTime().ToString();
+            switch (Task.type)
+            {
+                case Task.TaskType.Paper:
+                    TaskText.text = "Stamp the paper!";
+                    break;
+                case Task.TaskType.Phone:
+                    TaskText.text = "Answer the Phone!";
+                    break;
+                case Task.TaskType.Plant:
+                    TaskText.text = "Feed the Plant!";
+                    break;
+                default:
+                    break;
+            }
+            TimeText.text = Task.GetRemainingTime().ToString();
         }
     }
 }

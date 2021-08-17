@@ -79,7 +79,7 @@ public class Task : MonoBehaviour
 
     virtual public void FailTask(bool requireTask = true)
     {
-        if (requireTask && !taskExists) return;
+        if ((requireTask && !taskExists) || queue.Count <= 0) return;
         taskExists = false;
         queue.RemoveAt(0);
 

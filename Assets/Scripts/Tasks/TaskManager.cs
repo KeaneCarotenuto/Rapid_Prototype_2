@@ -9,7 +9,10 @@ public class TaskManager : MonoBehaviour
 
     public List<Task> currentTasks;
 
-    public TextMeshProUGUI taskList; 
+    public TextMeshProUGUI taskList;
+
+    float lastTaskTime = 0;
+    public float newTaskInterval = 10.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +24,12 @@ public class TaskManager : MonoBehaviour
     void Update()
     {
         taskList.text = GetTaskListString();
+
+        if (Time.time - lastTaskTime >= newTaskInterval)
+        {
+            lastTaskTime = Time.time;
+            allTasks[Random.Range(0, allTasks.Count)].QueueTask(10);
+        }
     }
 
     private string GetTaskListString()

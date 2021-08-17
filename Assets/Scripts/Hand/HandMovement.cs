@@ -119,9 +119,9 @@ public class HandMovement : MonoBehaviour
 
         float ratio = (Vector3.Angle(transform.forward, Vector3.forward) + Vector3.Angle(transform.up, Vector3.up)) / (360.0f * 2.0f);
 
-        m_rb.AddTorque(Vector3.up * Vector3.Dot(transform.forward, Vector3.left) * ratio);
-        m_rb.AddTorque(Vector3.right * Vector3.Dot(transform.forward, Vector3.up) * ratio);
-        m_rb.AddTorque(Vector3.forward * Vector3.Dot(transform.right, Vector3.down) * ratio);
+        m_rb.AddTorque(Vector3.up * Vector3.Dot(transform.forward, Vector3.left) * ratio * 3);
+        m_rb.AddTorque(Vector3.right * Vector3.Dot(transform.forward, Vector3.up) * ratio * 3);
+        m_rb.AddTorque(Vector3.forward * Vector3.Dot(transform.right, Vector3.down) * ratio * 3);
     }
 
     public void TryRelease()

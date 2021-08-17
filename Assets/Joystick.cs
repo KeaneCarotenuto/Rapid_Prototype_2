@@ -65,7 +65,7 @@ public class Joystick : MonoBehaviour
         LeftLastFrame = Left;
         RightLastFrame = Right;
 
-        m_rawinput.x = m_stick.localRotation.z * 15.0f;
-        m_rawinput.y = m_stick.localRotation.x * -15.0f;
+        m_rawinput.x = m_stick.localRotation.z * -10.0f;
+        m_rawinput.y = m_stick.localRotation.x * 10.0f;
     }
 }

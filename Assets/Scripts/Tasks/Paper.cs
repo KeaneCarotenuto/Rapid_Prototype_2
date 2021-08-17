@@ -17,6 +17,18 @@ public class Paper : MonoBehaviour
     public UnityEvent completed;
     public UnityEvent failed;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        //if (!m_stamp) m_stamp = GameObject.Find("Stamp");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
     public void Crumple()
     {
         if (m_crumpled) return;
@@ -43,7 +55,7 @@ public class Paper : MonoBehaviour
     {
         if (!m_handCallback.isGrabbed && other.name == "PaperZone")
         {
-            Destroy(gameObject);
+            Destroy(gameObject,1);
         }
     }
 

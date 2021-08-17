@@ -43,11 +43,66 @@ public class HandMovement : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            TryGrab();
+            if (!m_joint)
+            {
+                bool didHit = false;
+
+                Collider[] hits = Physics.OverlapSphere(grabSpot.position, grabDistance, grabbable);
+                foreach (Collider _hit in hits)
+                {
+                    Rigidbody hitBody = _hit.GetComponent<Rigidbody>();
+
+                    if (hitBody)
+                    {
+                        m_joint = gameObject.AddComponent<FixedJoint>();
+                        m_joint.connectedBody = hitBody;
+
+                        HandCallback callback = hitBody.GetComponent<HandCallback>();
+
+                        if (callback) callback.Grabbed();
+
+                        didHit = true;
+                        break;
+                    }
+
+                }
+
+                if (didHit)
+                {
+                    foreach (GameObject _part in fingers)
+                    {
+                        _part.GetComponent<Collider>().enabled = false;
+                    }
+                }
+            }
+
+            if (!mouseDown)
+            {
+                GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Close");
+                GetComponent<Animation>().Play();
+            }
+            mouseDown = true;
         }
         else
         {
-            TryRelease();
+            if (mouseDown)
+            {
+                if (m_joint)
+                {
+                    HandCallback callback = m_joint.connectedBody.transform.GetComponent<HandCallback>();
+                    if (callback) callback.Release();
+                    Destroy(m_joint);
+                }
+                foreach (GameObject _part in fingers)
+                {
+                    _part.GetComponent<Collider>().enabled = true;
+                }
+
+                GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Open");
+                GetComponent<Animation>().Play();
+            }
+
+            mouseDown = false;
         }
 
         Vector3 desiredVel = Vector3.zero;
@@ -94,70 +149,5 @@ public class HandMovement : MonoBehaviour
         m_rb.AddTorque(Vector3.up * Vector3.Dot(transform.forward, Vector3.left) * ratio);
         m_rb.AddTorque(Vector3.right * Vector3.Dot(transform.forward, Vector3.up) * ratio);
         m_rb.AddTorque(Vector3.forward * Vector3.Dot(transform.right, Vector3.down) * ratio);
-    }
-
-    public void TryRelease()
-    {
-        if (mouseDown)
-        {
-            if (m_joint)
-            {
-                HandCallback callback = m_joint.connectedBody.transform.GetComponent<HandCallback>();
-                if (callback) callback.Release();
-                Destroy(m_joint);
-            }
-            foreach (GameObject _part in fingers)
-            {
-                _part.GetComponent<Collider>().enabled = true;
-            }
-
-            GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Open");
-            GetComponent<Animation>().Play();
-        }
-
-        mouseDown = false;
-    }
-
-    public void TryGrab()
-    {
-        if (!m_joint)
-        {
-            bool didHit = false;
-
-            Collider[] hits = Physics.OverlapSphere(grabSpot.position, grabDistance, grabbable);
-            foreach (Collider _hit in hits)
-            {
-                Rigidbody hitBody = _hit.GetComponent<Rigidbody>();
-
-                if (hitBody)
-                {
-                    m_joint = gameObject.AddComponent<FixedJoint>();
-                    m_joint.connectedBody = hitBody;
-
-                    HandCallback callback = hitBody.GetComponent<HandCallback>();
-
-                    if (callback) callback.Grabbed();
-
-                    didHit = true;
-                    break;
-                }
-
-            }
-
-            if (didHit)
-            {
-                foreach (GameObject _part in fingers)
-                {
-                    _part.GetComponent<Collider>().enabled = false;
-                }
-            }
-        }
-
-        if (!mouseDown)
-        {
-            GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Close");
-            GetComponent<Animation>().Play();
-        }
-        mouseDown = true;
     }
 }

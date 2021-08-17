@@ -3,54 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public class TaskEvent : UnityEvent<string>
+{
+
+}
+
+public struct TaskStruct
+{
+    float Timer;
+    string ID;
+
+    public TaskStruct(float _time, string _id)
+    {
+        Timer = _time;
+        ID = _id;
+    }
+}
+
 public class Task : MonoBehaviour
 {
-    public enum TaskType
+    Queue<TaskStruct> m_taskqueue;
+    void Start()
     {
-        Paper,
-        Phone,
-        Plant
+        TaskManager mgr = FindObjectOfType<TaskManager>();
+        TaskCompleted.AddListener(mgr.CompleteTask);
+        TaskFailed.AddListener(mgr.FailTask);
     }
+    protected string id;
 
-    public UnityEvent TaskCompleted;
-    public UnityEvent TaskFailed;
-
-    public TaskType type;
-
+    public TaskEvent TaskCompleted;
+    public TaskEvent TaskFailed;
     public bool taskExists;
     protected float startTime = 0;
     protected float taskTime = Mathf.Infinity;
 
-    public struct QueueItem
+    virtual public void SetId(string _id)
     {
-        public float m_taskTime;
+        id = _id;
     }
 
-    public List<QueueItem> queue = new List<QueueItem>();
-
-    void Update()
+    virtual public string GetId()
     {
-        if (!taskExists && queue.Count > 0) StartTask(queue[0].m_taskTime);
-
-        if (taskExists)
-        {
-            if (Time.time - startTime >= taskTime)
-            {
-                FailTask();
-            }
-        }
-    }
-
-    virtual public void QueueTask(float _time = Mathf.Infinity)
-    {
-        QueueItem _task;
-        _task.m_taskTime = _time;
-
-        queue.Add(_task);
+        return id;
     }
 
     virtual public void StartTask(float _time = Mathf.Infinity)
     {
+
         if (taskExists) return;
         startTime = Time.time;
         taskTime = _time;
@@ -70,20 +69,16 @@ public class Task : MonoBehaviour
     {
         if (!taskExists) return;
         taskExists = false;
-        queue.RemoveAt(0);
-
-        TaskCompleted.Invoke();
+        TaskCompleted.Invoke(id);
 
         Debug.Log("Completed");
     }
 
     virtual public void FailTask(bool requireTask = true)
     {
-        if ((requireTask && !taskExists) || queue.Count <= 0) return;
+        if (requireTask && !taskExists) return;
         taskExists = false;
-        queue.RemoveAt(0);
-
-        TaskFailed.Invoke();
+        TaskFailed.Invoke(id);
 
         Debug.Log("Failed");
     }

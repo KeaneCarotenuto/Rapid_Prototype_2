@@ -11,6 +11,20 @@ public class PaperTask : Task
     public Transform paperPosition;
     public float spawnHeight = 10;
 
+    // Update is called once per frame
+    void Update()
+    {
+        if (!taskExists && !m_currentPaper) StartTask(10.0f);
+
+        if (taskExists)
+        {
+            if (Time.time - startTime >= taskTime)
+            {
+                FailTask();
+            }
+        }
+    }
+
     public override void StartTask(float _time = Mathf.Infinity)
     {
         if (taskExists) return;
@@ -21,14 +35,29 @@ public class PaperTask : Task
         Paper paper = m_currentPaper.GetComponent<Paper>();
         paper.completed.AddListener(CompleteTask);
         paper.failed.AddListener(() => { FailTask(); });
-        TaskFailed.AddListener(() => { 
-            if (m_currentPaper)
-            {
-                Destroy(m_currentPaper);
-                m_currentPaper = null;
-            }
-        });
 
         taskExists = true;
+    }
+
+    public override void CompleteTask()
+    {
+        if (!taskExists) return;
+        taskExists = false;
+        TaskCompleted.Invoke(id);
+        Debug.Log("Completed");
+    }
+
+    public override void FailTask(bool requireTask = true)
+    {
+        if (requireTask && !taskExists) return;
+        taskExists = false;
+        TaskFailed.Invoke(id);
+        Debug.Log("Failed");
+
+        if (m_currentPaper)
+        {
+            Destroy(m_currentPaper);
+            m_currentPaper = null;
+        }
     }
 }

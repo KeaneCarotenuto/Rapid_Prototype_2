@@ -41,9 +41,4 @@ public class HandCallback : MonoBehaviour
     {
         if (collision.transform.root == m_hand.transform) HandHit.Invoke();
     }
-
-    private void OnDestroy()
-    {
-        if (m_hand) m_hand.GetComponent<HandMovement>().TryRelease();
-    }
 }

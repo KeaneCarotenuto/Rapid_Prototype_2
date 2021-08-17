@@ -136,7 +136,7 @@ public class HandMovement : MonoBehaviour
             }
             foreach (GameObject _part in fingers)
             {
-                _part.GetComponent<Collider>().enabled = true;
+                if (_part.GetComponent<Collider>()) _part.GetComponent<Collider>().enabled = true;
             }
 
             //GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Open");
@@ -152,7 +152,7 @@ public class HandMovement : MonoBehaviour
         {
             foreach (GameObject _part in fingers)
             {
-                _part.GetComponent<Collider>().enabled = false;
+                if (_part.GetComponent<Collider>()) _part.GetComponent<Collider>().enabled = false;
             }
 
             bool didHit = false;

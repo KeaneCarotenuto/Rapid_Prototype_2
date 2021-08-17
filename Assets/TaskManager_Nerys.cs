@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TaskManager : MonoBehaviour
+public class TaskManager_Nerys : MonoBehaviour
 {
     public List<TaskData> m_PossibleTasks;
 
@@ -66,7 +66,7 @@ public class TaskManager : MonoBehaviour
 
 
         newtask.m_TaskID = "T_" + Time.timeSinceLevelLoad;
-        newtask.m_Task.SetId(newtask.m_TaskID);
+        //newtask.m_Task.SetId(newtask.m_TaskID);
         //newtask.m_Task.StartTask(newtask.m_TaskID, newtask.m_TaskDuration);
         m_ActiveTasks.Add(newtask);
 

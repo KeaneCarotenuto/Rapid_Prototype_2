@@ -11,11 +11,14 @@ public class PhoneTask : Task
     public Material green;
     public Material white;
 
-    public void StartTask()
+    public override void StartTask(float _time = Mathf.Infinity)
     {
         if (taskExists) return;
+        startTime = Time.time;
+        taskTime = _time;
 
         m_light.GetComponent<Renderer>().material = green;
+        
         taskExists = true;
     }
 
@@ -25,10 +28,6 @@ public class PhoneTask : Task
         {
             m_light.GetComponent<Renderer>().material = red;
         }
-        else
-        {
-            FailTask(false);
-        }
     }
 
     public void HungUp()
@@ -37,10 +36,6 @@ public class PhoneTask : Task
         if (taskExists)
         {
             CompleteTask();
-        }
-        else
-        {
-            FailTask();
         }
     }
 
@@ -58,21 +53,5 @@ public class PhoneTask : Task
         {
             HungUp();
         }
-    }
-
-    public override void CompleteTask()
-    {
-        if (!taskExists) return;
-        taskExists = false;
-        TaskCompleted.Invoke(id);
-        Debug.Log("Completed");
-    }
-
-    public override void FailTask(bool requireTask = true)
-    {
-        if (requireTask && !taskExists) return;
-        taskExists = false;
-        TaskFailed.Invoke(id);
-        Debug.Log("Failed");
     }
 }

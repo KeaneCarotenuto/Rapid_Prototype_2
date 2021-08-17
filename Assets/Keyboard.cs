@@ -5,54 +5,37 @@ using UnityEngine.Events;
 
 public class Keyboard : MonoBehaviour
 {
-    public bool FirstButton, SecondButton, ThirdButton, FirstButtonLastFrame, SecondButtonLastFrame, ThirdButtonLastFrame;
-    public Transform FirstTransform, SecondTransform, ThirdTransform;
-    public UnityEvent OnFirstPress, OnSecondPress, OnThirdPress;
+
+    public UnityEvent OnPress;
+
+    public List<Transform> m_Buttons;
+    public List<float> m_startYvalues;
+    public bool[] m_pressedLastFrame;
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_pressedLastFrame = new bool[100];
+        foreach (var button in m_Buttons)
+        {
+            m_startYvalues.Add(button.localPosition.y);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        FirstButton = false;
-        SecondButton = false;
-        ThirdButton = false;
-        
 
-        if (FirstTransform.localPosition.y <= 0.03f)
+        for (var i = 0; i < m_Buttons.Count; i++)
         {
-            FirstButton = true;
+            if (m_Buttons[i].localPosition.y < m_startYvalues[i] && !m_pressedLastFrame[i])
+            {
+                OnPress.Invoke();
+            }
+            m_pressedLastFrame[i] = m_Buttons[i].localPosition.y < m_startYvalues[i];
         }
-        else if (SecondTransform.localPosition.y <= 0.03f)
-        {
-            SecondButton = true;
-        }
-        else if (ThirdTransform.localPosition.y <= 0.03f)
-        {
-            ThirdButton = true;
-        }
-        
 
-        if (FirstButton && !FirstButtonLastFrame)
-        {
-            OnFirstPress.Invoke();
-        }
-        if (SecondButton && !SecondButtonLastFrame)
-        {
-            OnSecondPress.Invoke();
-        }
-        if (ThirdButton && !ThirdButtonLastFrame)
-        {
-            OnThirdPress.Invoke();
-        }
-       
 
-        FirstButtonLastFrame = FirstButton;
-        SecondButtonLastFrame = SecondButton;
-        ThirdButtonLastFrame = ThirdButton;
-        
+
+
     }
 }

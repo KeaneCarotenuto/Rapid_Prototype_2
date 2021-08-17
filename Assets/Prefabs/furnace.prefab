@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 333986735697915732}
   - component: {fileID: 3678689653754978545}
   - component: {fileID: 1506915827438883899}
+  - component: {fileID: 1830002411}
   m_Layer: 0
   m_Name: furnace
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146552610317612526}
-  m_LocalRotation: {x: -0, y: -0.92126894, z: -0, w: 0.38892603}
+  m_LocalRotation: {x: 0, y: -0.9212703, z: 0, w: 0.388923}
   m_LocalPosition: {x: 3.24, y: 1.334, z: -0.614}
   m_LocalScale: {x: 60.976234, y: 60.976234, z: 60.976234}
   m_Children: []
@@ -81,3 +82,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1830002411
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146552610317612526}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8803509901096473083, guid: 829a1463feb0f6a4b801e577de3843f7, type: 3}

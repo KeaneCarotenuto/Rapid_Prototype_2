@@ -24,9 +24,9 @@ public class TaskPanelManager : MonoBehaviour
             DestroyImmediate(child.gameObject);
         }
 
-        foreach (var task in m_manager.m_ActiveTasks)
-        {
-            Instantiate(m_taskpanelprefab, this.transform).GetComponent<TaskPanel>().Task = task;
-        }
+        //foreach (var task in m_manager.m_ActiveTasks)
+        //{
+        //    Instantiate(m_taskpanelprefab, this.transform).GetComponent<TaskPanel>().Task = task;
+        //}
     }
 }

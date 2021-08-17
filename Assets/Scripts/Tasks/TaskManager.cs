@@ -23,12 +23,12 @@ public class TaskManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        taskList.text = GetTaskListString();
+        if (taskList) taskList.text = GetTaskListString();
 
         if (Time.time - lastTaskTime >= newTaskInterval)
         {
             lastTaskTime = Time.time;
-            allTasks[Random.Range(0, allTasks.Count)].QueueTask(10);
+            if (allTasks.Count > 0) allTasks[Random.Range(0, allTasks.Count)].QueueTask(10);
         }
     }
 

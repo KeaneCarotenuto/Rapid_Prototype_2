@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 859559479959727373}
   - component: {fileID: 46747276078610356}
   - component: {fileID: 8831012430665129623}
+  - component: {fileID: 3292238044508095930}
   m_Layer: 0
   m_Name: Joystick
   m_TagString: Untagged
@@ -45,28 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b8f3ce59b0f6954d8c1989640f32a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_sensitivity: 0
+  m_deadzone: 0
   m_stick: {fileID: 4474981966083569323}
   m_rawinput: {x: 0, y: 0, z: 0}
-  OnJoystickUp:
-    m_PersistentCalls:
-      m_Calls: []
-  OnJoystickDown:
-    m_PersistentCalls:
-      m_Calls: []
-  OnJoystickLeft:
-    m_PersistentCalls:
-      m_Calls: []
-  OnJoystickRight:
-    m_PersistentCalls:
-      m_Calls: []
-  UpLastFrame: 0
-  DownLastFrame: 0
-  LeftLastFrame: 0
-  RightLastFrame: 0
-  Up: 0
-  Down: 0
-  Left: 0
-  Right: 0
 --- !u!114 &8831012430665129623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +81,23 @@ MonoBehaviour:
   - {fileID: 2126072656810339430}
   m_startYvalues: []
   m_pressedLastFrame: 
+--- !u!114 &3292238044508095930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46747276078610359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4ada3f71a96bc68a3282c217e2aa54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_KeyPressSounds:
+  - {fileID: 8300000, guid: 0f7977186e2fa814abc615bda2eea901, type: 3}
+  - {fileID: 8300000, guid: 25e283563b84d2c4096342290b6b852b, type: 3}
+  - {fileID: 8300000, guid: 1ed2b28084b44184eaa0102ad8748996, type: 3}
+  m_SoundPlayerPrefab: {fileID: 6182141052229980693, guid: 70a2d0644e807ec71b78f9b2111b6916, type: 3}
 --- !u!1 &429519003449093611
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +285,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.08446735, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.08446731, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 0.08446735, z: 0}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2

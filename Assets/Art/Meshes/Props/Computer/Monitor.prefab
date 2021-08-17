@@ -94,17 +94,39 @@ MonoBehaviour:
   m_Recipients:
   - Bossman@OrcCorp.com
   - Jerome@OrcCorp.com
+  - Krodd@OrcCorp.com
+  - SomeGit@OrcCorp.com
+  - St00pidGoblin@OrcCorp.com
+  - MaMum@ZogMail.com
+  - DavidMarch@ZogMail.com
+  - KnifeEars@SiredKingdom.co.me
+  - GrumpiSh0rti@MiddleMail.co.me
+  - K!ng0fMen@MiddleMail.co.me
   m_CCs:
   - <ALL>@OrcCorp.com
   - n/a
+  - All dah Gitz
   m_Subjects:
   - Vending Machine Broke
   - Inquiry into 200kg Exotic Cheeses
   - Cease and Desist
+  - Read Diz
+  - Oi
+  - Who Da Zog Reads Deez
+  - Subject (9)
+  - Anuffa Email
+  - Squig Complaint
+  - Rage Reduction Therapy
   m_Contents:
   - Bruh momento
   - Please reply Promptly.
   - Does anyone know who keeps reheating gall bladders in the break room microwave?
+  - Why are all da internz Goblinz? Dey stealin da jobz. I says we eatz all da Gobbos
+  - The weekly krump raid is gettin delayed if another git files for a desk replacement.
+    Work hard, krump harder ladz.
+  - Diz iz dah last email about dis topic Iz guna send, for dah final times... iz
+    not waaagh, iz WAAAAAAAAAAAAAAAAGH!
+  - You gotz dah anger issuez... good job keep it up
   m_recText: {fileID: 5566255602621345498}
   m_ccText: {fileID: 5566255602165878866}
   m_subText: {fileID: 5566255602203933841}

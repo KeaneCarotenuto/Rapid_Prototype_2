@@ -142,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allTasks:
   - {fileID: 0}
+  - {fileID: 0}
   currentTasks: []
   taskList: {fileID: 0}
   newTaskInterval: 4

@@ -33,6 +33,8 @@ public class HandMovement : MonoBehaviour
     [Header("Rage")]
     [SerializeField] float rageAmount = 0;
 
+    [SerializeField] GameObject axe;
+
 
     private void OnDrawGizmos()
     {
@@ -76,7 +78,11 @@ public class HandMovement : MonoBehaviour
 
         if (rageAmount < 0.5f) anim.SetBool("IsCalm", true);
         if (rageAmount >= 0.5f) anim.SetBool("IsCalm", false);
-        if (rageAmount >= 1.0f) anim.SetBool("Rage", true);
+        if (rageAmount >= 1.0f)
+        {
+            anim.SetBool("Rage", true);
+            axe.SetActive(true);
+        }
 
         Vector3 desiredVel = Vector3.zero;
 

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PhoneTask : Task
 {
-    public GameObject m_light;
+    public List<GameObject> m_buttons;
 
     public Material red;
     public Material green;
@@ -17,7 +17,12 @@ public class PhoneTask : Task
         startTime = Time.time;
         taskTime = _time;
 
-        m_light.GetComponent<Renderer>().material = green;
+        foreach (GameObject _button in m_buttons)
+        {
+            _button.GetComponent<Renderer>().material.color = Color.green;
+        }
+
+        //m_light.GetComponent<Renderer>().material = green;
         
         taskExists = true;
     }
@@ -26,13 +31,20 @@ public class PhoneTask : Task
     {
         if (taskExists)
         {
-            m_light.GetComponent<Renderer>().material = red;
+            foreach (GameObject _button in m_buttons)
+            {
+                _button.GetComponent<Renderer>().material.color = Color.red;
+            }
         }
     }
 
     public void HungUp()
     {
-        m_light.GetComponent<Renderer>().material = white;
+        foreach (GameObject _button in m_buttons)
+        {
+            _button.GetComponent<Renderer>().material.color = Color.white;
+        }
+
         if (taskExists)
         {
             CompleteTask();

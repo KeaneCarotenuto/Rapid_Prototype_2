@@ -40,7 +40,7 @@ public class Paper : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!m_handCallback.isGrabbed && other.name == "PaperZone")
+        if (other.name == "PaperZone")
         {
             Destroy(gameObject);
         }

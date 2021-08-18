@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class TaskManager : MonoBehaviour
 {
+    public UnityEvent addedTask;
+
     public List<Task> allTasks;
 
     public List<Task> currentTasks;
@@ -28,7 +31,11 @@ public class TaskManager : MonoBehaviour
         if (Time.time - lastTaskTime >= newTaskInterval)
         {
             lastTaskTime = Time.time;
-            if (allTasks.Count > 0) allTasks[Random.Range(0, allTasks.Count)].QueueTask(10);
+            if (allTasks.Count > 0)
+            {
+                allTasks[Random.Range(0, allTasks.Count)].QueueTask(10);
+                addedTask.Invoke();
+            }
         }
     }
 

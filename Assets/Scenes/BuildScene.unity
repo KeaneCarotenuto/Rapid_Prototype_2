@@ -3714,7 +3714,7 @@ MonoBehaviour:
   m_RadiantSource: {fileID: 5911830621020679956}
   m_EffectSource: {fileID: 5911830621020679955}
   m_RadiantSoundInterval: 5
-  m_RadiantSoundChance: 10
+  m_RadiantSoundChance: 20
 --- !u!82 &5911830621020679955
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3771,7 +3771,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.48
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3867,7 +3867,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.501
       inSlope: 0
       outSlope: 0
       tangentMode: 0

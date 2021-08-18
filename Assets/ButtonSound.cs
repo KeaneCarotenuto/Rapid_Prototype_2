@@ -5,17 +5,19 @@ using UnityEngine;
 public class ButtonSound : MonoBehaviour
 {
     public List<AudioClip> m_KeyPressSounds;
+    public AudioSource m_source;
     public GameObject m_SoundPlayerPrefab;
 
-    Queue<AudioSource> m_players;
+
     // Start is called before the first frame update
 
     public void PlaySound()
     {
-        AudioSource newsound = Instantiate(m_SoundPlayerPrefab, this.transform).GetComponent<AudioSource>();
-        newsound.clip = m_KeyPressSounds[Random.Range(0, m_KeyPressSounds.Count)];
-        newsound.Play();
-        m_players.Enqueue(newsound);
+
+        m_source.clip = m_KeyPressSounds[Random.Range(0, m_KeyPressSounds.Count)];
+        m_source.Play();
+
+
     }
     void Start()
     {
@@ -25,9 +27,7 @@ public class ButtonSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!m_players.Peek().isPlaying)
-        {
-            Destroy(m_players.Dequeue().gameObject);
-        }
+
+
     }
 }

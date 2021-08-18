@@ -22,7 +22,6 @@ public class Paper : MonoBehaviour
         if (m_crumpled) return;
 
         m_crumpled = true;
-        transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         GetComponent<MeshFilter>().mesh = m_sphereMesh;
         GetComponent<MeshCollider>().sharedMesh = m_sphereMesh;
     }

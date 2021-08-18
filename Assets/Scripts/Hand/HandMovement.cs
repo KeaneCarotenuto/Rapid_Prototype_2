@@ -35,6 +35,8 @@ public class HandMovement : MonoBehaviour
 
     [SerializeField] GameObject axe;
 
+    [SerializeField] TaskManager m_taskManager;
+
 
     private void OnDrawGizmos()
     {
@@ -57,6 +59,13 @@ public class HandMovement : MonoBehaviour
 
         if (!manual_height) yTarget = transform.position.y;
         if (!m_rb) m_rb = GetComponent<Rigidbody>();
+
+        foreach (Task _task in m_taskManager.allTasks)
+        {
+            _task.TaskFailed.AddListener(() => {
+                AddRage(0.1f);
+            });
+        }
     }
 
     // Update is called once per frame
@@ -74,7 +83,7 @@ public class HandMovement : MonoBehaviour
         if (m_joint) anim.SetBool("IsOpen", false);
         else anim.SetBool("IsOpen", true);
 
-        AddRage(0.01f * Time.deltaTime);
+        //AddRage(0.01f * Time.deltaTime);
 
         if (rageAmount < 0.5f) anim.SetBool("IsCalm", true);
         if (rageAmount >= 0.5f) anim.SetBool("IsCalm", false);

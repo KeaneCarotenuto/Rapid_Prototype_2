@@ -17,12 +17,6 @@ public class TaskManager : MonoBehaviour
     float lastTaskTime = 0;
     public float newTaskInterval = 10.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

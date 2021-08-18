@@ -23,13 +23,9 @@ public class Meat : MonoBehaviour
     {
         if (m_handCallback.isGrabbed && other.name == "MeatZone")
         {
-            Destroy(gameObject, 1);
+            completed.Invoke();
+            Destroy(gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
-        completed.Invoke();
     }
 
 }

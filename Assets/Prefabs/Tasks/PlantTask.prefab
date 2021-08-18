@@ -1080,7 +1080,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5037356512555113428}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1190,9 +1190,10 @@ MonoBehaviour:
   type: 2
   taskExists: 0
   m_currentMeat: {fileID: 0}
-  MeatPrefab: {fileID: 4217917679089417045, guid: 5bb64877305cfd44096faa4e6db40070, type: 3}
+  MeatPrefab: {fileID: 1646705120021140564, guid: f91986f82cd30e24ba2d3eabb197ec3a, type: 3}
   meatPosition: {fileID: 12602410}
   spawnHeight: 10
+  anim: {fileID: 5037356512036713621}
 --- !u!1 &5280335544687283190
 GameObject:
   m_ObjectHideFlags: 0

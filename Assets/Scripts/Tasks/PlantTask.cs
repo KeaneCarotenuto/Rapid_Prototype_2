@@ -10,6 +10,29 @@ public class PlantTask : Task
 
     [SerializeField] Animator anim;
 
+    void Update()
+    {
+        if (!taskExists && queue.Count > 0) StartTask(queue[0].m_taskTime);
+
+        if (taskExists)
+        {
+            if (Time.time - startTime >= taskTime)
+            {
+                FailTask();
+            }
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (!taskExists)
+        {
+            anim.SetBool("Idling", true);
+            anim.SetBool("Waiting", false);
+            anim.SetBool("Eating", false);
+        }
+    }
+
     public override void StartTask(float _time = Mathf.Infinity)
     {
         if (taskExists) return;
@@ -22,20 +45,15 @@ public class PlantTask : Task
 
         if (!m_currentMeat) m_currentMeat = Instantiate(MeatPrefab, meatPosition.position + new Vector3(0, spawnHeight, 0), Quaternion.identity, transform);
         Meat meat = m_currentMeat.GetComponent<Meat>();
-        meat.completed.AddListener(CompleteTask);
-        meat.failed.AddListener(() => { 
-            FailTask(); 
-        });
-        TaskFailed.AddListener(() => {
-            if (m_currentMeat)
-            {
-                Destroy(m_currentMeat);
-                m_currentMeat = null;
-            }
+        meat.completed.AddListener(() => {
+            CompleteTask();
 
             anim.SetBool("Idling", false);
-            anim.SetBool("Waiting", true);
-            anim.SetBool("Eating", false);
+            anim.SetBool("Waiting", false);
+            anim.SetBool("Eating", true);
+        });
+        meat.failed.AddListener(() => { 
+            FailTask(); 
         });
 
         taskExists = true;

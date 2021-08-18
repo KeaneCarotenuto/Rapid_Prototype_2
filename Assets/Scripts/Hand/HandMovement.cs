@@ -30,6 +30,10 @@ public class HandMovement : MonoBehaviour
 
     public Transform grabSpot;
 
+    [Header("Rage")]
+    [SerializeField] float rageAmount = 0;
+
+
     private void OnDrawGizmos()
     {
         Vector3 blfCorner = new Vector3(xBounds.x, yBounds.x, zBounds.x);
@@ -67,6 +71,12 @@ public class HandMovement : MonoBehaviour
 
         if (m_joint) anim.SetBool("IsOpen", false);
         else anim.SetBool("IsOpen", true);
+
+        AddRage(0.01f * Time.deltaTime);
+
+        if (rageAmount < 0.5f) anim.SetBool("IsCalm", true);
+        if (rageAmount >= 0.5f) anim.SetBool("IsCalm", false);
+        if (rageAmount >= 1.0f) anim.SetBool("Rage", true);
 
         Vector3 desiredVel = Vector3.zero;
 
@@ -124,6 +134,13 @@ public class HandMovement : MonoBehaviour
         m_rb.AddTorque(Vector3.up * Vector3.Dot(transform.forward, Vector3.left) * ratio * 3);
         m_rb.AddTorque(Vector3.right * Vector3.Dot(transform.forward, Vector3.up) * ratio * 3);
         m_rb.AddTorque(Vector3.forward * Vector3.Dot(transform.right, Vector3.down) * ratio * 3);
+    }
+
+    public void AddRage(float _amount)
+    {
+        rageAmount += _amount;
+
+        rageAmount = Mathf.Clamp(rageAmount, 0, 1.0f);
     }
 
     public void TryRelease()

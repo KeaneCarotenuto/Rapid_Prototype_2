@@ -14,6 +14,8 @@ public class HandMovement : MonoBehaviour
     public Vector2 xBounds;
     public Vector2 zBounds;
 
+    [SerializeField] Animator anim;
+
 
     [Header("Grabbing")]
     bool mouseDown = false;
@@ -60,6 +62,9 @@ public class HandMovement : MonoBehaviour
         {
             TryRelease();
         }
+
+        if (m_joint) anim.SetBool("IsOpen", false);
+        else anim.SetBool("IsOpen", true);
 
         Vector3 desiredVel = Vector3.zero;
 
@@ -114,9 +119,9 @@ public class HandMovement : MonoBehaviour
 
         float ratio = (Vector3.Angle(transform.forward, Vector3.forward) + Vector3.Angle(transform.up, Vector3.up)) / (360.0f * 2.0f);
 
-        m_rb.AddTorque(Vector3.up * Vector3.Dot(transform.forward, Vector3.left) * ratio);
-        m_rb.AddTorque(Vector3.right * Vector3.Dot(transform.forward, Vector3.up) * ratio);
-        m_rb.AddTorque(Vector3.forward * Vector3.Dot(transform.right, Vector3.down) * ratio);
+        m_rb.AddTorque(Vector3.up * Vector3.Dot(transform.forward, Vector3.left) * ratio * 3);
+        m_rb.AddTorque(Vector3.right * Vector3.Dot(transform.forward, Vector3.up) * ratio * 3);
+        m_rb.AddTorque(Vector3.forward * Vector3.Dot(transform.right, Vector3.down) * ratio * 3);
     }
 
     public void TryRelease()
@@ -131,11 +136,11 @@ public class HandMovement : MonoBehaviour
             }
             foreach (GameObject _part in fingers)
             {
-                _part.GetComponent<Collider>().enabled = true;
+                if (_part.GetComponent<Collider>()) _part.GetComponent<Collider>().enabled = true;
             }
 
-            GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Open");
-            GetComponent<Animation>().Play();
+            //GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Open");
+            //GetComponent<Animation>().Play();
         }
 
         mouseDown = false;
@@ -145,6 +150,11 @@ public class HandMovement : MonoBehaviour
     {
         if (!m_joint)
         {
+            foreach (GameObject _part in fingers)
+            {
+                if (_part.GetComponent<Collider>()) _part.GetComponent<Collider>().enabled = false;
+            }
+
             bool didHit = false;
 
             Collider[] hits = Physics.OverlapSphere(grabSpot.position, grabDistance, grabbable);
@@ -166,20 +176,12 @@ public class HandMovement : MonoBehaviour
                 }
 
             }
-
-            if (didHit)
-            {
-                foreach (GameObject _part in fingers)
-                {
-                    _part.GetComponent<Collider>().enabled = false;
-                }
-            }
         }
 
         if (!mouseDown)
         {
-            GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Close");
-            GetComponent<Animation>().Play();
+            //GetComponent<Animation>().clip = GetComponent<Animation>().GetClip("Close");
+            //GetComponent<Animation>().Play();
         }
         mouseDown = true;
     }

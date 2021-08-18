@@ -5,13 +5,12 @@ using UnityEngine.Events;
 
 public class Joystick : MonoBehaviour
 {
-    public float m_sensitivity;
-    public float m_deadzone;
+
     public Transform m_stick;
     public Vector3 m_rawinput;
+    public UnityEvent OnJoystickUp, OnJoystickDown, OnJoystickLeft, OnJoystickRight;
 
-
-
+    public bool UpLastFrame, DownLastFrame, LeftLastFrame, RightLastFrame, Up, Down, Left, Right;
 
     // Start is called before the first frame update
     void Start()
@@ -22,21 +21,51 @@ public class Joystick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(m_stick.localRotation.z) < m_deadzone)
+        Up = false;
+        Down = false;
+        Left = false;
+        Right = false;
+
+        if (m_stick.localRotation.x > 0.2f)
         {
-            m_rawinput.x = m_stick.localRotation.z * m_sensitivity;
+            Up = true;
         }
-        else
+        else if (m_stick.localRotation.x < -0.2f)
         {
-            m_rawinput.x = 0.0f;
+            Down = true;
         }
-        if (Mathf.Abs(m_stick.localRotation.x) < m_deadzone)
+        else if (m_stick.localRotation.z > 0.2f)
         {
-            m_rawinput.y = m_stick.localRotation.x * -m_sensitivity;
+            Left = true;
         }
-        else
+        else if (m_stick.localRotation.z < -0.2f)
         {
-            m_rawinput.y = 0.0f;
+            Right = true;
         }
+
+        if (Up && !UpLastFrame)
+        {
+            OnJoystickUp.Invoke();
+        }
+        if (Down && !DownLastFrame)
+        {
+            OnJoystickDown.Invoke();
+        }
+        if (Left && !LeftLastFrame)
+        {
+            OnJoystickLeft.Invoke();
+        }
+        if (Right && !RightLastFrame)
+        {
+            OnJoystickRight.Invoke();
+        }
+
+        UpLastFrame = Up;
+        DownLastFrame = Down;
+        LeftLastFrame = Left;
+        RightLastFrame = Right;
+
+        m_rawinput.x = m_stick.localRotation.z * 30.0f;
+        m_rawinput.y = m_stick.localRotation.x * -30.0f;
     }
 }

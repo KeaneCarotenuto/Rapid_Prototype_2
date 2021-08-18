@@ -8,10 +8,6 @@ public class TaskPanelManager : MonoBehaviour
     public GameObject m_taskpanelprefab;
     void Awake()
     {
-
-    }
-    private void Update()
-    {
         int i = 0;
 
         GameObject[] allChildren = new GameObject[transform.childCount];
@@ -28,9 +24,9 @@ public class TaskPanelManager : MonoBehaviour
             DestroyImmediate(child.gameObject);
         }
 
-        foreach (var task in m_manager.GetTaskListStrings())
-        {
-            Instantiate(m_taskpanelprefab, this.transform).GetComponent<TaskPanel>().TaskText.text = task;
-        }
+        //foreach (var task in m_manager.m_ActiveTasks)
+        //{
+        //    Instantiate(m_taskpanelprefab, this.transform).GetComponent<TaskPanel>().Task = task;
+        //}
     }
 }

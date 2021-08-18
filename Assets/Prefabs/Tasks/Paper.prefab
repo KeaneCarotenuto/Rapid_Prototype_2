@@ -136,7 +136,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &5185921801184837474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,14 +191,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5185921801184837481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d3bd581f2a81df459435cccc6d4e23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   yBounds: {x: 0.5, y: Infinity}
-  xBounds: {x: -2, y: 2}
+  xBounds: {x: -6, y: 4.75}
   zBounds: {x: -2, y: 2}
   autoSetPoint: 1
   respawnPoint: {x: 0, y: 0, z: 0}
   respawnHeight: 10
+  randomRotation: 1

@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Events;
 
 public class EmailInput : MonoBehaviour
 {
-    public UnityEvent OnSuccessfulSend;
     public List<string> m_Recipients, m_CCs, m_Subjects, m_Contents;
 
     string m_chosenRecipient, m_chosenCC, m_chosenSubject, m_chosenContent;
@@ -80,7 +78,7 @@ public class EmailInput : MonoBehaviour
             m_ccText.text = "";
             m_subText.text = "";
             m_conText.text = "";
-            OnSuccessfulSend.Invoke();
+            //Stuff that completes the task:
         }
     }
 }

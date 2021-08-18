@@ -19,6 +19,17 @@ public class StayOnDesk : MonoBehaviour
 
     private Rigidbody m_rb;
 
+    private void OnDrawGizmos()
+    {
+        Vector3 blfCorner = new Vector3(xBounds.x, yBounds.x, zBounds.x);
+        Vector3 trbCorner = new Vector3(xBounds.y, yBounds.y, zBounds.y);
+
+        Gizmos.DrawWireCube(
+            (blfCorner + trbCorner) / 2.0f,
+            new Vector3(Mathf.Abs(xBounds.x - xBounds.y), Mathf.Abs(yBounds.x - yBounds.y), Mathf.Abs(zBounds.x - zBounds.y))
+            );
+    }
+
     void Start()
     {
         m_rb = GetComponent<Rigidbody>();

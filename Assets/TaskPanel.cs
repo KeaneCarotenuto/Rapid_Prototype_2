@@ -6,9 +6,9 @@ using TMPro;
 public class TaskPanel : MonoBehaviour
 {
     public TMP_Text TaskText;
+    public TMP_Text TimeText;
 
-
-
+    public TaskData Task;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +18,14 @@ public class TaskPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (Task == null)
-        // {
-        //     Destroy(this.gameObject);
-        // }
-        // else
-        // {
-        //     TaskText.text = Task.m_TaskDesc;
-        //     TimeText.text = Task.m_Task.GetRemainingTime().ToString();
-        // }
+        if (Task == null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            TaskText.text = Task.m_TaskDesc;
+            TimeText.text = Task.m_Task.GetRemainingTime().ToString();
+        }
     }
 }

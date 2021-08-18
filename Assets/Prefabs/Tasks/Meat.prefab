@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 4217917679089417045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.05, z: -0.5}
-  m_LocalScale: {x: 0.2, y: 0.05, z: 0.1}
+  m_LocalScale: {x: 0.4, y: 0.1, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -156,13 +156,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3bd581f2a81df459435cccc6d4e23f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yBounds: {x: 0.5, y: Infinity}
-  xBounds: {x: -2, y: 2}
+  yBounds: {x: 0.5, y: 50}
+  xBounds: {x: -6, y: 4.75}
   zBounds: {x: -2, y: 2}
   autoSetPoint: 1
   respawnPoint: {x: 0, y: 0, z: 0}
-  respawnHeight: 10
-  randomRotation: 1
+  respawnHeight: 0
+  randomRotation: 0
 --- !u!64 &5178794489151332084
 MeshCollider:
   m_ObjectHideFlags: 0

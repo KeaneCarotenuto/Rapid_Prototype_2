@@ -492,6 +492,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1464478581}
     m_Modifications:
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskFailed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskCompleted.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskFailed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskFailed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1919593303}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 118260876}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskFailed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskFailed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskFailed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.AudioSource, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.AudioSource, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskFailed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 647434383565458007, guid: 7a37485290129ae44bbc440087f03758, type: 3}
+      propertyPath: TaskCompleted.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4937648444742093066, guid: 7a37485290129ae44bbc440087f03758, type: 3}
       propertyPath: m_manager
       value: 

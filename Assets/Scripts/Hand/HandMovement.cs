@@ -21,7 +21,7 @@ public class HandMovement : MonoBehaviour
     bool mouseDown = false;
 
     public Rigidbody m_rb;
-    public FixedJoint m_joint;
+    public ConfigurableJoint m_joint;
 
     public float grabDistance;
     public LayerMask grabbable;
@@ -39,6 +39,8 @@ public class HandMovement : MonoBehaviour
             (blfCorner + trbCorner) /2.0f,
             new Vector3(Mathf.Abs(xBounds.x - xBounds.y), Mathf.Abs(yBounds.x - yBounds.y), Mathf.Abs(zBounds.x - zBounds.y))
             );
+
+        Gizmos.DrawSphere(grabSpot.position, grabDistance);
     }
 
     // Start is called before the first frame update
@@ -71,13 +73,13 @@ public class HandMovement : MonoBehaviour
         float horiz = Input.GetAxis("Mouse X");
         float vert = Input.GetAxis("Mouse Y");
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetMouseButton(1))
         {
-            desiredVel += Vector3.down * m_moveSpeed * 2;
+            desiredVel += Vector3.down * m_moveSpeed * 4;
         }
         else
         {
-            desiredVel += Vector3.ClampMagnitude((new Vector3(transform.position.x, yTarget, transform.position.z) - transform.position) * 10, m_moveSpeed);
+            desiredVel += Vector3.ClampMagnitude((new Vector3(transform.position.x, yTarget, transform.position.z) - transform.position) * 10, m_moveSpeed * 2);
         }
 
         desiredVel += new Vector3(horiz, 0, vert) * 10 * m_moveSpeed;
@@ -150,10 +152,7 @@ public class HandMovement : MonoBehaviour
     {
         if (!m_joint)
         {
-            foreach (GameObject _part in fingers)
-            {
-                if (_part.GetComponent<Collider>()) _part.GetComponent<Collider>().enabled = false;
-            }
+            
 
             bool didHit = false;
 
@@ -164,7 +163,19 @@ public class HandMovement : MonoBehaviour
 
                 if (hitBody)
                 {
-                    m_joint = gameObject.AddComponent<FixedJoint>();
+                    m_joint = gameObject.AddComponent<ConfigurableJoint>();
+                    m_joint.xMotion = ConfigurableJointMotion.Locked;
+                    m_joint.yMotion = ConfigurableJointMotion.Locked;
+                    m_joint.zMotion = ConfigurableJointMotion.Locked;
+                    
+                    if (hitBody.transform.root.name != "Joystick")
+                    {
+                        m_joint.angularXMotion = ConfigurableJointMotion.Locked;
+                        m_joint.angularYMotion = ConfigurableJointMotion.Locked;
+                        m_joint.angularZMotion = ConfigurableJointMotion.Locked;
+                    }
+                    
+                    
                     m_joint.connectedBody = hitBody;
 
                     HandCallback callback = hitBody.GetComponent<HandCallback>();
@@ -175,6 +186,14 @@ public class HandMovement : MonoBehaviour
                     break;
                 }
 
+            }
+
+            if (didHit)
+            {
+                foreach (GameObject _part in fingers)
+                {
+                    if (_part.GetComponent<Collider>()) _part.GetComponent<Collider>().enabled = false;
+                }
             }
         }
 

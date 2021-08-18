@@ -80,6 +80,11 @@ public class EmailInput : MonoBehaviour
             m_ccText.text = "";
             m_subText.text = "";
             m_conText.text = "";
+            m_FinishedWriting = false;
+            m_reccount = 0;
+            m_cccount = 0;
+            m_subcount = 0;
+            m_concount = 0;
             OnSuccessfulSend.Invoke();
         }
     }

@@ -166,6 +166,12 @@ public class HandMovement : MonoBehaviour
             {
                 HandCallback callback = m_joint.connectedBody.transform.GetComponent<HandCallback>();
                 if (callback) callback.Release();
+
+                GameObject joystick = m_joint.connectedBody.transform.root.gameObject;
+                HandCallback joystickCallback = null;
+                if (joystick) joystickCallback = joystick.GetComponent<HandCallback>();
+                if (joystickCallback) joystickCallback.Release();
+
                 Destroy(m_joint);
             }
             foreach (GameObject _part in fingers)
@@ -205,6 +211,13 @@ public class HandMovement : MonoBehaviour
                         m_joint.angularXMotion = ConfigurableJointMotion.Locked;
                         m_joint.angularYMotion = ConfigurableJointMotion.Locked;
                         m_joint.angularZMotion = ConfigurableJointMotion.Locked;
+                    }
+                    else
+                    {
+                        GameObject joystick = hitBody.transform.root.gameObject;
+                        HandCallback joystickCallback = null;
+                        if (joystick) joystickCallback = joystick.GetComponent<HandCallback>();
+                        if (joystickCallback) joystickCallback.Grabbed();
                     }
                     
                     

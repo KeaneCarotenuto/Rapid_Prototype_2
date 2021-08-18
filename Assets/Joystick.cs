@@ -21,6 +21,13 @@ public class Joystick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<HandCallback>() && !GetComponent<HandCallback>().isGrabbed)
+        {
+            m_rawinput.x = 0;
+            m_rawinput.y = 0;
+            return;
+        }
+
         Up = false;
         Down = false;
         Left = false;

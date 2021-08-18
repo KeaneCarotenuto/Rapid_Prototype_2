@@ -9,7 +9,8 @@ public class Task : MonoBehaviour
     {
         Paper,
         Phone,
-        Plant
+        Plant,
+        Email
     }
 
     public UnityEvent TaskCompleted;

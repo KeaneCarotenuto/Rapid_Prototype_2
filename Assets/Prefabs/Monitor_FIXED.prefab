@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6250942784694116806
 RectTransform:
   m_ObjectHideFlags: 0
@@ -736,6 +736,7 @@ GameObject:
   - component: {fileID: 6250942785690670717}
   - component: {fileID: 6250942785690670718}
   - component: {fileID: 6250942785690670719}
+  - component: {fileID: 647434383565458007}
   m_Layer: 0
   m_Name: Monitor_FIXED
   m_TagString: Untagged
@@ -828,6 +829,26 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &647434383565458007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6250942785690670704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89df690b5ef69223aab85c0970f76a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TaskCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  TaskFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  type: 0
+  taskExists: 0
 --- !u!1 &6250942785825023386
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,9 +937,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6250942785825023386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eef3bd25c92fe248893a54a5c46fa0b, type: 3}
+  m_Script: {fileID: 11500000, guid: bb744c10e1e3556f886bd9d528dd997f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnSuccessfulSend:
+    m_PersistentCalls:
+      m_Calls: []
   m_Recipients:
   - Bossman@OrcCorp.com
   - Jerome@OrcCorp.com
@@ -1039,7 +1063,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6250942785825023398}
+        m_TargetAssemblyTypeName: EmailInput, Assembly-CSharp
+        m_MethodName: SendEmail
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6250942786173036573
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,7 +2316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5745917479713764426, guid: 81c81405598017863b7b26502f6591d4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5745917479713764426, guid: 81c81405598017863b7b26502f6591d4, type: 3}
       propertyPath: m_AnchorMin.x
@@ -2288,7 +2324,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5745917479713764426, guid: 81c81405598017863b7b26502f6591d4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5745917479713764426, guid: 81c81405598017863b7b26502f6591d4, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2328,11 +2364,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5745917479713764426, guid: 81c81405598017863b7b26502f6591d4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 46.869995
       objectReference: {fileID: 0}
     - target: {fileID: 5745917479713764426, guid: 81c81405598017863b7b26502f6591d4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -6.3
       objectReference: {fileID: 0}
     - target: {fileID: 5745917479713764426, guid: 81c81405598017863b7b26502f6591d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

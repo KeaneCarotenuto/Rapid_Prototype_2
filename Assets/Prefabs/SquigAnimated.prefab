@@ -98,6 +98,9 @@ MonoBehaviour:
   m_EffectSource: {fileID: 593126462417706595}
   m_RadiantSoundInterval: 5
   m_RadiantSoundChance: 20
+  m_hand: {fileID: 0}
+  m_rageReduceCooldown: 10
+  m_lastRageReduce: 0
 --- !u!135 &593126462417706593
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -752,7 +755,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6264883188913406725}
-  m_LocalRotation: {x: -0, y: 0.7933559, z: -0, w: -0.60875815}
+  m_LocalRotation: {x: 0, y: 0.7933534, z: -0, w: -0.60876137}
   m_LocalPosition: {x: -1.4280101, y: 0.9430001, z: 0.29689336}
   m_LocalScale: {x: 0.1998825, y: 0.1998825, z: 0.1998825}
   m_Children:

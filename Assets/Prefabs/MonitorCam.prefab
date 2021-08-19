@@ -229,6 +229,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2703155560681965011}
     m_Modifications:
+    - target: {fileID: 6250942785013303343, guid: ab5c8cbc279749e8a968f5597c82d72d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 65.899994
+      objectReference: {fileID: 0}
     - target: {fileID: 6250942785690670704, guid: ab5c8cbc279749e8a968f5597c82d72d, type: 3}
       propertyPath: m_Name
       value: Monitor_FIXED
@@ -321,6 +325,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2703155560681965010}
+    - target: {fileID: 6804992531676814016, guid: ab5c8cbc279749e8a968f5597c82d72d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 92
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab5c8cbc279749e8a968f5597c82d72d, type: 3}
 --- !u!224 &8303589814558613800 stripped

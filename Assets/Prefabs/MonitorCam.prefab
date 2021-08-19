@@ -233,6 +233,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 65.899994
       objectReference: {fileID: 0}
+    - target: {fileID: 6250942785230868790, guid: ab5c8cbc279749e8a968f5597c82d72d, type: 3}
+      propertyPath: m_Name
+      value: Clock
+      objectReference: {fileID: 0}
     - target: {fileID: 6250942785690670704, guid: ab5c8cbc279749e8a968f5597c82d72d, type: 3}
       propertyPath: m_Name
       value: Monitor_FIXED

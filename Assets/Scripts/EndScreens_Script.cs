@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EndScreens_Script : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI m_clock_text;
+
     [SerializeField] GameObject m_hand;
 
     [SerializeField] GameObject m_winScreen;
@@ -57,6 +60,7 @@ public class EndScreens_Script : MonoBehaviour
         else
         {
             TimeToSurvive -= Time.deltaTime;
+            m_clock_text.text = "Time Left: " + Mathf.Floor(TimeToSurvive / 60.0f).ToString() + ":" + Mathf.Floor((int)TimeToSurvive % 60).ToString();
         }
     }
 }

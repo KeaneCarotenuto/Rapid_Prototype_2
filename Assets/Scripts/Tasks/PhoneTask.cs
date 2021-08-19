@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class PhoneTask : Task
 {
     public List<GameObject> m_buttons;
-
+    public AudioSource m_source;
+    public AudioClip m_ringclip, m_pickupclip, m_dropclip;
     public Material red;
     public Material green;
     public Material white;
@@ -21,9 +22,11 @@ public class PhoneTask : Task
         {
             _button.GetComponent<Renderer>().material.color = Color.green;
         }
-
+        m_source.clip = m_ringclip;
+        m_source.loop = true;
+        m_source.Play();
         //m_light.GetComponent<Renderer>().material = green;
-        
+
         taskExists = true;
     }
 
@@ -35,6 +38,9 @@ public class PhoneTask : Task
             {
                 _button.GetComponent<Renderer>().material.color = Color.red;
             }
+            m_source.loop = false;
+            m_source.clip = m_pickupclip;
+            m_source.Play();
         }
     }
 
@@ -44,7 +50,9 @@ public class PhoneTask : Task
         {
             _button.GetComponent<Renderer>().material.color = Color.white;
         }
-
+        m_source.loop = false;
+        m_source.clip = m_dropclip;
+        m_source.Play();
         if (taskExists)
         {
             CompleteTask();

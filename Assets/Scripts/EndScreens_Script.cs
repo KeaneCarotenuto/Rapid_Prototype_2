@@ -16,6 +16,8 @@ public class EndScreens_Script : MonoBehaviour
     [SerializeField] Image m_firedImage;
     [SerializeField] Image m_black;
 
+    public AudioSource m_ragesource;
+
     public float TimeToSurvive = 120;
     float startTime = 0;
 
@@ -28,7 +30,7 @@ public class EndScreens_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
 
         if (TimeToSurvive <= 0)
         {
@@ -47,7 +49,7 @@ public class EndScreens_Script : MonoBehaviour
 
             m_survivedImage.color += new Color(0, 0, 0, 1.0f) * Time.deltaTime;
         }
-        else if (m_hand.GetComponent<HandMovement>().GetRage() >= 1) 
+        else if (m_hand.GetComponent<HandMovement>().GetRage() >= 1)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

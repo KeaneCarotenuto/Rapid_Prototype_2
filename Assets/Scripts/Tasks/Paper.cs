@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class Paper : MonoBehaviour
 {
+    public AudioSource m_AudioSource;
+    public AudioClip m_crumplesound, m_stampsound;
     bool m_crumpled = false;
     bool m_stamped = false;
 
@@ -22,6 +24,8 @@ public class Paper : MonoBehaviour
         if (m_crumpled) return;
 
         m_crumpled = true;
+        m_AudioSource.clip = m_crumplesound;
+        m_AudioSource.Play();
         GetComponent<MeshFilter>().mesh = m_crumpledMesh;
         GetComponent<MeshCollider>().sharedMesh = m_crumpledMesh;
     }
@@ -35,6 +39,8 @@ public class Paper : MonoBehaviour
             {
                 GetComponent<MeshRenderer>().material.color = Color.red;
                 m_stamped = true;
+                m_AudioSource.clip = m_stampsound;
+                m_AudioSource.Play();
             }
         }
     }

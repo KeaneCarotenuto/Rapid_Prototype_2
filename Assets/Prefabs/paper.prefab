@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_stamp: {fileID: 7571362776488664894, guid: 641d0c185c8ec2b46b1facf70d2ce454, type: 3}
-  m_sphereMesh: {fileID: 1405877409711587873, guid: 904486a0a6260db4daeb238489d8aa96, type: 3}
+  m_crumpledMesh: {fileID: 1405877409711587873, guid: 904486a0a6260db4daeb238489d8aa96, type: 3}
   m_handCallback: {fileID: 1820067574}
   completed:
     m_PersistentCalls:

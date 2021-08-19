@@ -79,6 +79,7 @@ public class HandMovement : MonoBehaviour
         {
             TryRelease();
         }
+        
 
         if (m_joint) anim.SetBool("IsOpen", false);
         else anim.SetBool("IsOpen", true);

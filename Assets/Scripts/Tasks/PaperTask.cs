@@ -11,6 +11,24 @@ public class PaperTask : Task
     public Transform paperPosition;
     public float spawnHeight = 10;
 
+    void Update()
+    {
+        if (!taskExists && queue.Count > 0) StartTask(queue[0].m_taskTime);
+
+        if (taskExists)
+        {
+            if (Time.time - startTime >= taskTime)
+            {
+                FailTask();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            QueueTask(30);
+        }
+    }
+
     public override void StartTask(float _time = Mathf.Infinity)
     {
         if (taskExists) return;

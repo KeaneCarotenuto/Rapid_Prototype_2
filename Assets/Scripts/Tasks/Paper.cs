@@ -10,7 +10,7 @@ public class Paper : MonoBehaviour
 
     public GameObject m_stamp;
 
-    [SerializeField] Mesh m_sphereMesh;
+    [SerializeField] Mesh m_crumpledMesh;
 
     [SerializeField] HandCallback m_handCallback;
 
@@ -22,8 +22,8 @@ public class Paper : MonoBehaviour
         if (m_crumpled) return;
 
         m_crumpled = true;
-        GetComponent<MeshFilter>().mesh = m_sphereMesh;
-        GetComponent<MeshCollider>().sharedMesh = m_sphereMesh;
+        GetComponent<MeshFilter>().mesh = m_crumpledMesh;
+        GetComponent<MeshCollider>().sharedMesh = m_crumpledMesh;
     }
 
     private void OnCollisionEnter(Collision collision)

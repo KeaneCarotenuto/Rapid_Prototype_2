@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HandMovement : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class HandMovement : MonoBehaviour
     [SerializeField] GameObject axe;
 
     [SerializeField] TaskManager m_taskManager;
+
+    [SerializeField] RawImage rageIcon;
+
+    [SerializeField] List<Texture> icons;
 
 
     private void OnDrawGizmos()
@@ -88,6 +93,11 @@ public class HandMovement : MonoBehaviour
         else anim.SetBool("IsOpen", true);
 
         //AddRage(0.01f * Time.deltaTime);
+
+        rageIcon.texture = icons[Mathf.Clamp((int)Mathf.Floor((icons.Count) * rageAmount),0,3)];
+
+        float randScale = Random.Range(10 - rageAmount, 10 + rageAmount);
+        rageIcon.transform.localScale = Vector3.Lerp(rageIcon.transform.localScale, new Vector3(randScale, randScale, randScale), 0.1f);
 
         if (rageAmount < 0.5f) anim.SetBool("IsCalm", true);
         if (rageAmount >= 0.5f) anim.SetBool("IsCalm", false);

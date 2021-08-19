@@ -153,7 +153,7 @@ public class HandMovement : MonoBehaviour
             }
             else
             {
-                desiredVel += Vector3.ClampMagnitude((new Vector3(transform.position.x, yTarget, transform.position.z) - transform.position) * 10, m_moveSpeed * 2);
+                desiredVel += Vector3.ClampMagnitude((new Vector3(transform.position.x, yTarget, transform.position.z) - transform.position) * 10, m_slamspeed * 2);
             }
 
             if (Input.GetKeyDown(KeyCode.L))

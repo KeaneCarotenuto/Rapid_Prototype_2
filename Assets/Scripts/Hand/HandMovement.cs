@@ -7,6 +7,7 @@ public class HandMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float m_moveSpeed = 1.0f;
+    public float m_slamspeed = 1.0f;
 
     [SerializeField] bool manual_height;
 
@@ -148,16 +149,13 @@ public class HandMovement : MonoBehaviour
 
             if (Input.GetMouseButton(1))
             {
-                desiredVel += Vector3.down * m_moveSpeed * 4;
+                desiredVel += Vector3.down * m_slamspeed * 4;
             }
             else
             {
                 desiredVel += Vector3.ClampMagnitude((new Vector3(transform.position.x, yTarget, transform.position.z) - transform.position) * 10, m_moveSpeed * 2);
             }
-            if (Input.GetKeyDown(KeyCode.W))
-            {
 
-            }
             if (Input.GetKeyDown(KeyCode.L))
             {
                 rageAmount = 1;

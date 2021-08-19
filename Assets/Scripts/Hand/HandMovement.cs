@@ -15,7 +15,7 @@ public class HandMovement : MonoBehaviour
     public Vector2 xBounds;
     public Vector2 zBounds;
 
-    [SerializeField] Animator anim;
+    [SerializeField] public Animator anim;
 
 
     [Header("Grabbing")]
@@ -171,6 +171,11 @@ public class HandMovement : MonoBehaviour
         rageAmount += _amount;
 
         rageAmount = Mathf.Clamp(rageAmount, 0, 1.0f);
+    }
+
+    public float GetRage()
+    {
+        return rageAmount;
     }
 
     public void TryRelease()

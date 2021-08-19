@@ -76,23 +76,12 @@ public class HandMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            TryGrab();
-        }
-        else
-        {
-            TryRelease();
-        }
-
         if (m_joint) grabSpot.GetComponent<MeshRenderer>().enabled = false;
         else grabSpot.GetComponent<MeshRenderer>().enabled = true;
 
 
         if (m_joint) anim.SetBool("IsOpen", false);
         else anim.SetBool("IsOpen", true);
-
-        //AddRage(0.01f * Time.deltaTime);
 
         rageIcon.texture = icons[Mathf.Clamp((int)Mathf.Floor((icons.Count) * rageAmount),0,3)];
 
@@ -107,62 +96,74 @@ public class HandMovement : MonoBehaviour
             axe.SetActive(true);
         }
 
-        if (transform.position.y < yBounds.x )
+        if (rageAmount < 1)
         {
-            m_rb.velocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
-            transform.position = new Vector3(transform.position.x, yBounds.x, transform.position.z);
-        }
-        if (transform.position.y > yBounds.y )
-        {
-            m_rb.velocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
-            transform.position = new Vector3(transform.position.x, yBounds.y, transform.position.z);
-        }
-        
-        if (transform.position.x < xBounds.x && m_rb.velocity.x <= 0)
-        {
-            m_rb.velocity = new Vector3(0, m_rb.velocity.y, m_rb.velocity.z);
-            transform.position = new Vector3(xBounds.x, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x > xBounds.y && m_rb.velocity.x >= 0)
-        {
-            m_rb.velocity = new Vector3(0, m_rb.velocity.y, m_rb.velocity.z);
-            transform.position = new Vector3(xBounds.y, transform.position.y, transform.position.z);
-        }
-       
-        if (transform.position.z < zBounds.x && m_rb.velocity.z <= 0)
-        {
-            m_rb.velocity = new Vector3(m_rb.velocity.x, m_rb.velocity.y, 0);
-            transform.position = new Vector3(transform.position.x, transform.position.y, zBounds.x);
-        }
-        if (transform.position.z > zBounds.y && m_rb.velocity.z >= 0)
-        {
-            m_rb.velocity = new Vector3(m_rb.velocity.x, m_rb.velocity.y, 0);
-            transform.position = new Vector3(transform.position.x, transform.position.y, zBounds.y);
-        }
+            if (Input.GetMouseButton(0))
+            {
+                TryGrab();
+            }
+            else
+            {
+                TryRelease();
+            }
 
-        Vector3 desiredVel = Vector3.zero;
+            if (transform.position.y < yBounds.x)
+            {
+                m_rb.velocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
+                transform.position = new Vector3(transform.position.x, yBounds.x, transform.position.z);
+            }
+            if (transform.position.y > yBounds.y)
+            {
+                m_rb.velocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
+                transform.position = new Vector3(transform.position.x, yBounds.y, transform.position.z);
+            }
 
-        float horiz = Input.GetAxis("Mouse X");
-        float vert = Input.GetAxis("Mouse Y");
+            if (transform.position.x < xBounds.x && m_rb.velocity.x <= 0)
+            {
+                m_rb.velocity = new Vector3(0, m_rb.velocity.y, m_rb.velocity.z);
+                transform.position = new Vector3(xBounds.x, transform.position.y, transform.position.z);
+            }
+            if (transform.position.x > xBounds.y && m_rb.velocity.x >= 0)
+            {
+                m_rb.velocity = new Vector3(0, m_rb.velocity.y, m_rb.velocity.z);
+                transform.position = new Vector3(xBounds.y, transform.position.y, transform.position.z);
+            }
 
-        if (Input.GetMouseButton(1))
-        {
-            desiredVel += Vector3.down * m_moveSpeed * 4;
+            if (transform.position.z < zBounds.x && m_rb.velocity.z <= 0)
+            {
+                m_rb.velocity = new Vector3(m_rb.velocity.x, m_rb.velocity.y, 0);
+                transform.position = new Vector3(transform.position.x, transform.position.y, zBounds.x);
+            }
+            if (transform.position.z > zBounds.y && m_rb.velocity.z >= 0)
+            {
+                m_rb.velocity = new Vector3(m_rb.velocity.x, m_rb.velocity.y, 0);
+                transform.position = new Vector3(transform.position.x, transform.position.y, zBounds.y);
+            }
+
+            Vector3 desiredVel = Vector3.zero;
+
+            float horiz = Input.GetAxis("Mouse X");
+            float vert = Input.GetAxis("Mouse Y");
+
+            if (Input.GetMouseButton(1))
+            {
+                desiredVel += Vector3.down * m_moveSpeed * 4;
+            }
+            else
+            {
+                desiredVel += Vector3.ClampMagnitude((new Vector3(transform.position.x, yTarget, transform.position.z) - transform.position) * 10, m_moveSpeed * 2);
+            }
+
+            desiredVel += new Vector3(horiz, 0, vert) * 10 * m_moveSpeed;
+
+            m_rb.velocity = desiredVel;
+
+            float ratio = (Vector3.Angle(transform.forward, Vector3.forward) + Vector3.Angle(transform.up, Vector3.up)) / (360.0f * 2.0f);
+
+            m_rb.AddTorque(Vector3.up * Vector3.Dot(transform.forward, Vector3.left) * ratio * 3);
+            m_rb.AddTorque(Vector3.right * Vector3.Dot(transform.forward, Vector3.up) * ratio * 3);
+            m_rb.AddTorque(Vector3.forward * Vector3.Dot(transform.right, Vector3.down) * ratio * 3);
         }
-        else
-        {
-            desiredVel += Vector3.ClampMagnitude((new Vector3(transform.position.x, yTarget, transform.position.z) - transform.position) * 10, m_moveSpeed * 2);
-        }
-
-        desiredVel += new Vector3(horiz, 0, vert) * 10 * m_moveSpeed;
-
-        m_rb.velocity = desiredVel;
-
-        float ratio = (Vector3.Angle(transform.forward, Vector3.forward) + Vector3.Angle(transform.up, Vector3.up)) / (360.0f * 2.0f);
-
-        m_rb.AddTorque(Vector3.up * Vector3.Dot(transform.forward, Vector3.left) * ratio * 3);
-        m_rb.AddTorque(Vector3.right * Vector3.Dot(transform.forward, Vector3.up) * ratio * 3);
-        m_rb.AddTorque(Vector3.forward * Vector3.Dot(transform.right, Vector3.down) * ratio * 3);
     }
 
     public void AddRage(float _amount)

@@ -19,7 +19,17 @@ public class PlantTask : Task
             if (Time.time - startTime >= taskTime)
             {
                 FailTask();
+                if (m_currentMeat)
+                {
+                    Destroy(m_currentMeat);
+                    m_currentMeat = null;
+                }
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            QueueTask(30);
         }
     }
 

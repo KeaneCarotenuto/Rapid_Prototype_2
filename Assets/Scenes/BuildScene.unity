@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4552.824, g: 4733.1133, b: 4758.217, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3909,10 +3909,18 @@ PrefabInstance:
       propertyPath: m_manager
       value: 
       objectReference: {fileID: 1477216316}
+    - target: {fileID: 8303589813885419387, guid: 5cc88b9a0e81f68439becd712e811d80, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 65.899994
+      objectReference: {fileID: 0}
     - target: {fileID: 8303589815878758022, guid: 5cc88b9a0e81f68439becd712e811d80, type: 3}
       propertyPath: m_joystick
       value: 
       objectReference: {fileID: 1315793281}
+    - target: {fileID: 8931685956339838356, guid: 5cc88b9a0e81f68439becd712e811d80, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 92
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cc88b9a0e81f68439becd712e811d80, type: 3}
 --- !u!1001 &2738030270889072228

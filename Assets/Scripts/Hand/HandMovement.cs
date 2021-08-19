@@ -96,7 +96,7 @@ public class HandMovement : MonoBehaviour
 
         rageIcon.texture = icons[Mathf.Clamp((int)Mathf.Floor((icons.Count) * rageAmount),0,3)];
 
-        float randScale = Random.Range(10 - rageAmount, 10 + rageAmount);
+        float randScale = Random.Range(10 - rageAmount, 10);
         rageIcon.transform.localScale = Vector3.Lerp(rageIcon.transform.localScale, new Vector3(randScale, randScale, randScale), 0.1f);
 
         if (rageAmount < 0.5f) anim.SetBool("IsCalm", true);

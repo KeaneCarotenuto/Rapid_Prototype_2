@@ -6,11 +6,11 @@ public class EmailInputProxy : MonoBehaviour
 {
     public GameObject m_EmailObj;
 
-    public void InputKey()
+    public void InputKey(int times = 1)
     {
         if (m_EmailObj.gameObject.activeSelf)
         {
-            m_EmailObj.GetComponent<EmailInput>().InputKey();
+            m_EmailObj.GetComponent<EmailInput>().InputKey(times);
         }
     }
 }

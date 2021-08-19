@@ -79,7 +79,10 @@ public class HandMovement : MonoBehaviour
         {
             TryRelease();
         }
-        
+
+        if (m_joint) grabSpot.GetComponent<MeshRenderer>().enabled = false;
+        else grabSpot.GetComponent<MeshRenderer>().enabled = true;
+
 
         if (m_joint) anim.SetBool("IsOpen", false);
         else anim.SetBool("IsOpen", true);

@@ -45,30 +45,33 @@ public class EmailInput : MonoBehaviour
 
     }
 
-    public void InputKey()
+    public void InputKey(int times = 1)
     {
-        if (m_FinishedWriting) return;
+        for (int i = 0; i < times; i++)
+        {
+            if (m_FinishedWriting) return;
 
-        if (m_recText.text.Length < m_chosenRecipient.Length)
-        {
-            m_recText.text += m_chosenRecipient[m_reccount++];
-        }
-        else if (m_ccText.text.Length < m_chosenCC.Length)
-        {
-            m_ccText.text += m_chosenCC[m_cccount++];
-        }
-        else if (m_subText.text.Length < m_chosenSubject.Length)
-        {
-            m_subText.text += m_chosenSubject[m_subcount++];
-        }
-        else if (m_conText.text.Length < m_chosenContent.Length)
-        {
-            m_conText.text += m_chosenContent[m_concount++];
-        }
-        else
-        {
-            m_conText.text += "\n\nYours Gruntily,\nOrc";
-            m_FinishedWriting = true;
+            if (m_recText.text.Length < m_chosenRecipient.Length)
+            {
+                m_recText.text += m_chosenRecipient[m_reccount++];
+            }
+            else if (m_ccText.text.Length < m_chosenCC.Length)
+            {
+                m_ccText.text += m_chosenCC[m_cccount++];
+            }
+            else if (m_subText.text.Length < m_chosenSubject.Length)
+            {
+                m_subText.text += m_chosenSubject[m_subcount++];
+            }
+            else if (m_conText.text.Length < m_chosenContent.Length)
+            {
+                m_conText.text += m_chosenContent[m_concount++];
+            }
+            else
+            {
+                m_conText.text += "\n\nYours Gruntily,\nOrc";
+                m_FinishedWriting = true;
+            }
         }
     }
 

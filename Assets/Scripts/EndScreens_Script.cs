@@ -32,7 +32,10 @@ public class EndScreens_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            TimeToSurvive = 0;
+        }
 
         if (TimeToSurvive <= 0)
         {

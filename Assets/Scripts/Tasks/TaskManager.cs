@@ -7,6 +7,8 @@ using UnityEngine.Events;
 public class TaskManager : MonoBehaviour
 {
     public UnityEvent OnTaskAdd;
+
+    public NotificationSpawner m_Spawner;
     public List<Task> allTasks;
 
     public List<Task> currentTasks;
@@ -35,7 +37,28 @@ public class TaskManager : MonoBehaviour
             if (Random.Range(0, 100) <= newTaskProbability)
             {
                 OnTaskAdd.Invoke();
-                allTasks[Random.Range(0, allTasks.Count)].QueueTask(30);
+
+                Task chosen = allTasks[Random.Range(0, allTasks.Count)];
+                chosen.QueueTask(30);
+                switch (chosen.type)
+                {
+                    case Task.TaskType.Email:
+                        m_Spawner.Spawn("Send an Email!");
+                        break;
+                    case Task.TaskType.Phone:
+                        m_Spawner.Spawn("Answer the Phone!");
+                        break;
+                    case Task.TaskType.Plant:
+                        m_Spawner.Spawn("Feed the Plant!");
+                        break;
+                    case Task.TaskType.Paper:
+                        m_Spawner.Spawn("Stamp the Paper!");
+                        break;
+
+                    default:
+                        break;
+                }
+
             }
 
         }

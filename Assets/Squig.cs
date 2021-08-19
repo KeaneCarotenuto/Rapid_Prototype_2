@@ -25,11 +25,18 @@ public class Squig : MonoBehaviour
 
     float m_timer, m_animtimer;
 
+    [Header("Rage Stuff")]
+    [SerializeField] GameObject m_hand;
+    public float m_rageReduceCooldown;
+    [SerializeField] float m_lastRageReduce;
+
     // Start is called before the first frame update
     void Start()
     {
         m_timer = m_RadiantSoundInterval;
         m_animtimer = m_AnimChangeInterval;
+
+        m_lastRageReduce = -m_rageReduceCooldown;
     }
 
     // Update is called once per frame
@@ -78,7 +85,12 @@ public class Squig : MonoBehaviour
             m_EffectSource.Play();
             m_SquigAnim.SetBool("Squish", true);
 
-
+            if (other.transform.root.gameObject == m_hand && Time.time - m_lastRageReduce >= m_rageReduceCooldown)
+            {
+                m_lastRageReduce = Time.time;
+                HandMovement hm = m_hand.GetComponent<HandMovement>();
+                hm.AddRage(-0.1f);
+            }
         }
     }
 

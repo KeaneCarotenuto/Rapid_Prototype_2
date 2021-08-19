@@ -18,6 +18,8 @@ public class EndScreens_Script : MonoBehaviour
 
     public AudioSource m_ragesource;
 
+    public bool hasplayed = false;
+
     public float TimeToSurvive = 120;
     float startTime = 0;
 
@@ -51,6 +53,11 @@ public class EndScreens_Script : MonoBehaviour
         }
         else if (m_hand.GetComponent<HandMovement>().GetRage() >= 1)
         {
+            if (!hasplayed)
+            {
+                m_ragesource.Play();
+                hasplayed = true;
+            }
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 

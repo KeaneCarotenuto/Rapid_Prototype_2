@@ -83,7 +83,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnSquish:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8378624330715382204}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SmashCooldown: 0.5
   m_SquigSmash: {fileID: 8300000, guid: 2473267c8792cda43b137cff9d2e83df, type: 3}
   m_SquigAnim: {fileID: 6498764359090388566}
@@ -761,6 +773,7 @@ Transform:
   m_Children:
   - {fileID: 2380807639628744993}
   - {fileID: 1078994869826770826}
+  - {fileID: 6203594018211876258}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 255, z: 0}
@@ -877,3 +890,94 @@ Transform:
   m_Father: {fileID: 7848281668684996612}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6669090699681788587
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6753858740995250623}
+    m_Modifications:
+    - target: {fileID: 764144415234408201, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 764144415234408201, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 764144415234408201, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 764144415234408201, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 764144415234408201, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 764144415234408201, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 764144415234408201, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 764144415234408201, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 764144415234408201, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 764144415234408201, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 764144415234408201, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939589175979586326, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939589175979586326, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939589175979586326, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939589175979586327, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939589175979586327, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939589175979586327, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7964659429113852246, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+      propertyPath: m_Name
+      value: SquigGel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+--- !u!4 &6203594018211876258 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 764144415234408201, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+  m_PrefabInstance: {fileID: 6669090699681788587}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8378624330715382204 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2939589175979586327, guid: 211904f068668804ab1397ce82ca6efd, type: 3}
+  m_PrefabInstance: {fileID: 6669090699681788587}
+  m_PrefabAsset: {fileID: 0}

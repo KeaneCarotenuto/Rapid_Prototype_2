@@ -49,7 +49,7 @@ public class HandMovement : MonoBehaviour
         Vector3 trbCorner = new Vector3(xBounds.y, yBounds.y, zBounds.y);
 
         Gizmos.DrawWireCube(
-            (blfCorner + trbCorner) /2.0f,
+            (blfCorner + trbCorner) / 2.0f,
             new Vector3(Mathf.Abs(xBounds.x - xBounds.y), Mathf.Abs(yBounds.x - yBounds.y), Mathf.Abs(zBounds.x - zBounds.y))
             );
 
@@ -67,7 +67,8 @@ public class HandMovement : MonoBehaviour
 
         foreach (Task _task in m_taskManager.allTasks)
         {
-            _task.TaskFailed.AddListener(() => {
+            _task.TaskFailed.AddListener(() =>
+            {
                 AddRage(0.1f);
             });
         }
@@ -83,7 +84,7 @@ public class HandMovement : MonoBehaviour
         if (m_joint) anim.SetBool("IsOpen", false);
         else anim.SetBool("IsOpen", true);
 
-        rageIcon.texture = icons[Mathf.Clamp((int)Mathf.Floor((icons.Count) * rageAmount),0,3)];
+        rageIcon.texture = icons[Mathf.Clamp((int)Mathf.Floor((icons.Count) * rageAmount), 0, 3)];
 
         float randScale = Random.Range(10 - rageAmount, 10);
         rageIcon.transform.localScale = Vector3.Lerp(rageIcon.transform.localScale, new Vector3(randScale, randScale, randScale), 0.1f);
@@ -153,6 +154,14 @@ public class HandMovement : MonoBehaviour
             {
                 desiredVel += Vector3.ClampMagnitude((new Vector3(transform.position.x, yTarget, transform.position.z) - transform.position) * 10, m_moveSpeed * 2);
             }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                rageAmount = 1;
+            }
 
             desiredVel += new Vector3(horiz, 0, vert) * 10 * m_moveSpeed;
 
@@ -210,7 +219,7 @@ public class HandMovement : MonoBehaviour
     {
         if (!m_joint)
         {
-            
+
 
             bool didHit = false;
 
@@ -225,7 +234,7 @@ public class HandMovement : MonoBehaviour
                     m_joint.xMotion = ConfigurableJointMotion.Locked;
                     m_joint.yMotion = ConfigurableJointMotion.Locked;
                     m_joint.zMotion = ConfigurableJointMotion.Locked;
-                    
+
                     if (hitBody.transform.root.name != "Joystick")
                     {
                         m_joint.angularXMotion = ConfigurableJointMotion.Locked;
@@ -239,8 +248,8 @@ public class HandMovement : MonoBehaviour
                         if (joystick) joystickCallback = joystick.GetComponent<HandCallback>();
                         if (joystickCallback) joystickCallback.Grabbed();
                     }
-                    
-                    
+
+
                     m_joint.connectedBody = hitBody;
 
                     HandCallback callback = hitBody.GetComponent<HandCallback>();

@@ -94,30 +94,12 @@ public class HandMovement : MonoBehaviour
             axe.SetActive(true);
         }
 
-        Vector3 desiredVel = Vector3.zero;
-
-        float horiz = Input.GetAxis("Mouse X");
-        float vert = Input.GetAxis("Mouse Y");
-
-        if (Input.GetMouseButton(1))
-        {
-            desiredVel += Vector3.down * m_moveSpeed * 4;
-        }
-        else
-        {
-            desiredVel += Vector3.ClampMagnitude((new Vector3(transform.position.x, yTarget, transform.position.z) - transform.position) * 10, m_moveSpeed * 2);
-        }
-
-        desiredVel += new Vector3(horiz, 0, vert) * 10 * m_moveSpeed;
-
-        m_rb.velocity = desiredVel;
-
-        if (transform.position.y < yBounds.x && m_rb.velocity.y <= 0)
+        if (transform.position.y < yBounds.x )
         {
             m_rb.velocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
             transform.position = new Vector3(transform.position.x, yBounds.x, transform.position.z);
         }
-        if (transform.position.y > yBounds.y && m_rb.velocity.y >= 0)
+        if (transform.position.y > yBounds.y )
         {
             m_rb.velocity = new Vector3(m_rb.velocity.x, 0, m_rb.velocity.z);
             transform.position = new Vector3(transform.position.x, yBounds.y, transform.position.z);
@@ -144,6 +126,24 @@ public class HandMovement : MonoBehaviour
             m_rb.velocity = new Vector3(m_rb.velocity.x, m_rb.velocity.y, 0);
             transform.position = new Vector3(transform.position.x, transform.position.y, zBounds.y);
         }
+
+        Vector3 desiredVel = Vector3.zero;
+
+        float horiz = Input.GetAxis("Mouse X");
+        float vert = Input.GetAxis("Mouse Y");
+
+        if (Input.GetMouseButton(1))
+        {
+            desiredVel += Vector3.down * m_moveSpeed * 4;
+        }
+        else
+        {
+            desiredVel += Vector3.ClampMagnitude((new Vector3(transform.position.x, yTarget, transform.position.z) - transform.position) * 10, m_moveSpeed * 2);
+        }
+
+        desiredVel += new Vector3(horiz, 0, vert) * 10 * m_moveSpeed;
+
+        m_rb.velocity = desiredVel;
 
         float ratio = (Vector3.Angle(transform.forward, Vector3.forward) + Vector3.Angle(transform.up, Vector3.up)) / (360.0f * 2.0f);
 
